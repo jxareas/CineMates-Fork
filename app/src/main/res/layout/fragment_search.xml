@@ -33,7 +33,7 @@
                 android:inputType="text"
                 app:iconifiedByDefault="false"
                 app:queryBackground="@null"
-                app:queryHint="Search something..."
+                app:queryHint="Search..."
                 app:searchIcon="@null" />
 
             <ImageView

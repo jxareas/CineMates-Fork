@@ -1,16 +1,14 @@
 package com.example.cinemates.model;
 
-import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.util.Log;
 import android.widget.ImageView;
 
 import androidx.databinding.BindingAdapter;
 
 import com.bumptech.glide.Glide;
 import com.example.cinemates.R;
-import com.example.cinemates.util.Credential;
+import com.example.cinemates.util.Constants;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -21,10 +19,12 @@ public class MovieModel implements Parcelable {
     private String release_date;
     private int movie_id;
     private float vote_average;
+    private String years;
+    private int duration;
+    private String plot;
     @SerializedName("overview")
     @Expose
     private String movie_overview;
-
     private String original_language;
 
 
@@ -32,15 +32,19 @@ public class MovieModel implements Parcelable {
     //genres is nested json object , we will learn it later in this series
 
 
-    public MovieModel(String title, String poster_path, String release_date, int movie_id, float vote_average, String movie_overview, String original_language) {
+    private MovieModel(String title, String poster_path, String release_date, int movie_id, float vote_average, String years, int duration, String plot, String movie_overview, String original_language) {
         this.title = title;
         this.poster_path = poster_path;
         this.release_date = release_date;
         this.movie_id = movie_id;
         this.vote_average = vote_average;
+        this.years = years;
+        this.duration = duration;
+        this.plot = plot;
         this.movie_overview = movie_overview;
         this.original_language = original_language;
     }
+
 
     protected MovieModel(Parcel in) {
         title = in.readString();
@@ -50,6 +54,10 @@ public class MovieModel implements Parcelable {
         vote_average = in.readFloat();
         movie_overview = in.readString();
         original_language = in.readString();
+        years = in.readString();
+        duration = in.readInt();
+        plot = in.readString();
+
     }
 
     public static final Creator<MovieModel> CREATOR = new Creator<MovieModel>() {
@@ -74,6 +82,18 @@ public class MovieModel implements Parcelable {
 
     public String getRelease_date() {
         return release_date;
+    }
+
+    private String getYears() {
+        return years;
+    }
+
+    private int getDuration() {
+        return duration;
+    }
+
+    private String getPlot() {
+        return plot;
     }
 
     public int getMovie_id() {
@@ -108,12 +128,15 @@ public class MovieModel implements Parcelable {
         dest.writeString(movie_overview);
         dest.writeString(original_language);
         dest.writeString(poster_path);
+        dest.writeString(years);
+        dest.writeString(plot);
+        dest.writeInt(duration);
     }
 
     @BindingAdapter("loadImage")
     public static void loadImage(ImageView imageView, String posterPath) {
         Glide.with(imageView)
-                .load(Credential.POSTER_URL+posterPath)
+                .load(Constants.POSTER_URL + posterPath)
                 .placeholder(R.drawable.ic_baseline_image_not_supported_24)
                 .into(imageView);
     }
@@ -126,6 +149,9 @@ public class MovieModel implements Parcelable {
                 ", release_date='" + release_date + '\'' +
                 ", movie_id=" + movie_id +
                 ", vote_average=" + vote_average +
+                ", years='" + years + '\'' +
+                ", duration=" + duration +
+                ", plot='" + plot + '\'' +
                 ", movie_overview='" + movie_overview + '\'' +
                 ", original_language='" + original_language + '\'' +
                 '}';

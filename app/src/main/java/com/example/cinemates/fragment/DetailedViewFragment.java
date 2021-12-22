@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -25,6 +26,7 @@ import android.widget.Toast;
 import com.example.cinemates.R;
 import com.example.cinemates.adapter.MovieRecyclerViewAdapter;
 import com.example.cinemates.databinding.FragmentDetailedViewBinding;
+import com.example.cinemates.viewModels.MovieListViewModel;
 
 
 public class DetailedViewFragment extends Fragment {
@@ -33,6 +35,7 @@ public class DetailedViewFragment extends Fragment {
     private NavController mNavController;
     private LinearLayoutManager mLinearLayoutManager;
     private GridLayoutManager mGridLayoutManager;
+    private MovieListViewModel mViewModel;
     private MovieRecyclerViewAdapter mRecyclerViewAdapter;
     private boolean layoutGrid = false;
 
@@ -45,6 +48,9 @@ public class DetailedViewFragment extends Fragment {
         mRecyclerViewAdapter = new MovieRecyclerViewAdapter();
         mLinearLayoutManager = new LinearLayoutManager(getContext());
         mGridLayoutManager = new GridLayoutManager(getContext(), 3);
+
+        mViewModel = new ViewModelProvider(this).get(MovieListViewModel.class);
+
     }
 
 
@@ -56,6 +62,19 @@ public class DetailedViewFragment extends Fragment {
         mBinding = FragmentDetailedViewBinding.inflate(inflater, container, false);
 
         mBinding.recyclerView.setAdapter(mRecyclerViewAdapter);
+        mBinding.recyclerView.setEmptyView(mBinding.emptyView.getRoot());
+
+        // RecyclerView Pagination
+        // Loading next page of api response
+        mBinding.recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                if (recyclerView.canScrollVertically(1)) {
+                    //here we need to display  the next search result in the next page of api
+                    mViewModel.searchNextPage();
+                }
+            }
+        });
 
         return mBinding.getRoot();
     }

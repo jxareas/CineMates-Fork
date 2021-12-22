@@ -42,6 +42,7 @@ public class SectionItemsRecyclerViewAdapter extends EmptyRecyclerView.Adapter<S
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), DetailMediaContentActivity.class);
+                intent.putExtra("movie", movie);
                 view.getContext().startActivity(intent);
             }
         });

@@ -16,7 +16,28 @@
         app:layout_constraintTop_toTopOf="parent"
         app:menu="@menu/menu_change_view" />
 
-    <com.example.cinemates.adapter.EmptyRecyclerView
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.example.cinemates.adapter.EmptyRecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:spanCount="3"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            tools:listitem="@layout/list_item_media_poster" />
+
+        <include
+            android:id="@+id/empty_view"
+            layout="@layout/layout_empty_recycler" />
+    </RelativeLayout>
+    <!--<com.example.cinemates.adapter.EmptyRecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -25,7 +46,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        tools:listitem="@layout/list_item_media" />
+        tools:listitem="@layout/list_item_media" />-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

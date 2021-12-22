@@ -8,7 +8,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.cinemates.AppExecutors;
 import com.example.cinemates.model.MovieModel;
 import com.example.cinemates.response.MovieSearchResponse;
-import com.example.cinemates.util.Credential;
+import com.example.cinemates.util.Constants;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -149,7 +149,7 @@ public class MovieApiClient {
             //search method query
             private Call<MovieSearchResponse>  getMovies(String query, int pageNumber){
                 return Service.getMovieApi().searchMovie(
-                        Credential.API_KEY,
+                        Constants.API_KEY,
                         query,
                        pageNumber
                 );
@@ -215,7 +215,7 @@ public class MovieApiClient {
         //search method query
         private Call<MovieSearchResponse>  getPop(int pageNumber){
             return Service.getMovieApi().getPopular(
-                    Credential.API_KEY,
+                    Constants.API_KEY,
                     pageNumber
             );
 
