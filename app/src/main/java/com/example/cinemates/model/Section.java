@@ -9,9 +9,9 @@ import java.util.List;
 public class Section {
 
     private String sectionName;
-    private List<Movie> sectionItems;
+    private List<MovieModel> sectionItems;
 
-    public Section(String sectionName, List<Movie> sectionItems) {
+    public Section(String sectionName, List<MovieModel> sectionItems) {
         this.sectionName = sectionName;
         this.sectionItems = sectionItems;
     }
@@ -24,11 +24,11 @@ public class Section {
         this.sectionName = sectionName;
     }
 
-    public List<Movie> getSectionItems() {
+    public List<MovieModel> getSectionItems() {
         return sectionItems;
     }
 
-    public void setSectionItems(List<Movie> sectionItems) {
+    public void setSectionItems(List<MovieModel> sectionItems) {
         this.sectionItems = sectionItems;
     }
 }
