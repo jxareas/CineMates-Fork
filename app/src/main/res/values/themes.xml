@@ -55,7 +55,7 @@
     <!--  Fine TabLayout Style-->
 
     <style name="item_title_style">
-        <item name="android:textColor">@color/alabaster</item>
+        <item name="android:textColor">@color/lynch_100</item>
         <item name="android:textSize">14sp</item>
         <item name="android:textStyle">bold</item>
     </style>

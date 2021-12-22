@@ -14,7 +14,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="20dp">
+        android:paddingStart="20dp"
+        android:paddingTop="20dp">
 
 
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -59,10 +60,10 @@
             <com.example.cinemates.adapter.EmptyRecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
-                tools:listitem="@layout/list_item_media_poster"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/list_item_media_poster" />
 
             <include
                 android:id="@+id/empty_view"

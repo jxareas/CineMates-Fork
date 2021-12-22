@@ -1,12 +1,16 @@
 package com.example.cinemates.model;
 
+import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 import android.widget.ImageView;
 
 import androidx.databinding.BindingAdapter;
 
 import com.bumptech.glide.Glide;
+import com.example.cinemates.R;
+import com.example.cinemates.util.Credential;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -15,10 +19,8 @@ public class MovieModel implements Parcelable {
     private String title;
     private String poster_path;
     private String release_date;
-
     private int movie_id;
     private float vote_average;
-
     @SerializedName("overview")
     @Expose
     private String movie_overview;
@@ -26,7 +28,7 @@ public class MovieModel implements Parcelable {
     private String original_language;
 
 
-    //for the purpose of simplicity ,i will use the release date  insted of category
+    //for the purpose of simplicity ,i will use the release date  instead of category
     //genres is nested json object , we will learn it later in this series
 
 
@@ -86,6 +88,7 @@ public class MovieModel implements Parcelable {
         return movie_overview;
     }
 
+
     public String getOriginal_language() {
         return original_language;
     }
@@ -104,14 +107,15 @@ public class MovieModel implements Parcelable {
         dest.writeFloat(vote_average);
         dest.writeString(movie_overview);
         dest.writeString(original_language);
+        dest.writeString(poster_path);
     }
 
-    @BindingAdapter("android:loadImage")
-    public static void loadImage(ImageView imageView, String imageUri) {
+    @BindingAdapter("loadImage")
+    public static void loadImage(ImageView imageView, String posterPath) {
         Glide.with(imageView)
-                .load(imageUri)
+                .load(Credential.POSTER_URL+posterPath)
+                .placeholder(R.drawable.ic_baseline_image_not_supported_24)
                 .into(imageView);
-
     }
 
     @Override
