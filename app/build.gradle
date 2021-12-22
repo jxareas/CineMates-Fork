@@ -1,9 +1,11 @@
+
 plugins {
     id 'com.android.application'
     id 'androidx.navigation.safeargs'
-
+    id 'com.google.secrets_gradle_plugin' version '0.4'
 }
-
+def localProperties = new Properties()
+localProperties.load(new FileInputStream(rootProject.file("local.properties")))
 android {
     compileSdk 31
 
@@ -15,6 +17,8 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "API_KEY",localProperties['apiKey']
+
     }
 
     buildTypes {
