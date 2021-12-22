@@ -89,7 +89,7 @@ public class AccountFragment extends Fragment implements ConfirmationDialogFragm
     }
 
     @Override
-    public void onFinisConfirmationDialog(ConfirmationDialogFragment.ConfirmationTypo typo) {
+    public void onFinishConfirmationDialog(ConfirmationDialogFragment.ConfirmationTypo typo) {
         switch (typo) {
             case DELETE:
                 //TODO delete account

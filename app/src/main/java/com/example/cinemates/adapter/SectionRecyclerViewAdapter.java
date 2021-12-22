@@ -27,7 +27,7 @@ import info.movito.themoviedbapi.model.people.PersonCast;
  * Created 15/12/2021 at 16:36
  */
 public class SectionRecyclerViewAdapter extends RecyclerView.Adapter<SectionRecyclerViewAdapter.SectionViewHolder> {
-    private List<Section> dataList = new ArrayList<>();
+    private final List<Section> dataList = new ArrayList<>();
 
     @NonNull
     @Override

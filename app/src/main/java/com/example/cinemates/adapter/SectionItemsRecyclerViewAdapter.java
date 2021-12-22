@@ -21,7 +21,7 @@ import info.movito.themoviedbapi.model.people.PersonCast;
  * Created 15/12/2021 at 16:36
  */
 public class SectionItemsRecyclerViewAdapter extends EmptyRecyclerView.Adapter<SectionItemsRecyclerViewAdapter.SectionItemViewHolder> {
-    private List<Movie> dataList = new ArrayList<>();
+    private final List<Movie> dataList = new ArrayList<>();
 
     @NonNull
     @Override
@@ -32,7 +32,7 @@ public class SectionItemsRecyclerViewAdapter extends EmptyRecyclerView.Adapter<S
     }
 
     @Override
-    public void onBindViewHolder(SectionItemViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull SectionItemViewHolder holder, int position) {
         Movie movie = dataList.get(position);/*
         holder.mBinding.setMovie(movie);
         holder.mBinding.executePendingBindings();*/

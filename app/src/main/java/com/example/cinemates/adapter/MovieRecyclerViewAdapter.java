@@ -20,7 +20,7 @@ import java.util.List;
  * Created 15/12/2021 at 16:36
  */
 public class MovieRecyclerViewAdapter extends EmptyRecyclerView.Adapter<MovieRecyclerViewAdapter.MovieViewHolder> {
-    private List<Movie> dataList = new ArrayList<>();
+    private final List<Movie> dataList = new ArrayList<>();
 
     @NonNull
     @Override
@@ -56,7 +56,6 @@ public class MovieRecyclerViewAdapter extends EmptyRecyclerView.Adapter<MovieRec
     }
 
     static class MovieViewHolder extends EmptyRecyclerView.ViewHolder {
-        private static final String TAG = "MovieViewHolder";
         ListItemMediaBinding mBinding;
 
         MovieViewHolder(@NonNull ListItemMediaBinding listItemMediaBinding) {

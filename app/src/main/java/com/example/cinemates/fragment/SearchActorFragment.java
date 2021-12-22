@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cinemates.adapter.ActorRecyclerViewAdapter;
 import com.example.cinemates.databinding.FragmentSearchActorBinding;
-import com.example.cinemates.util.ChangeRvLayout;
+import com.example.cinemates.interfaces.ChangeRvLayout;
 
 
 public class SearchActorFragment extends Fragment implements ChangeRvLayout {

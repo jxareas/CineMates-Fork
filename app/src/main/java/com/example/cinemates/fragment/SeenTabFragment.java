@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cinemates.databinding.FragmentSeenBinding;
-import com.example.cinemates.util.ChangeRvLayout;
+import com.example.cinemates.interfaces.ChangeRvLayout;
 
 
 public class SeenTabFragment extends Fragment implements ChangeRvLayout {

@@ -6,11 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cinemates.databinding.FragmentToSeeBinding;
-import com.example.cinemates.util.ChangeRvLayout;
+import com.example.cinemates.interfaces.ChangeRvLayout;
 
 
 public class ToSeeTabFragment extends Fragment implements ChangeRvLayout {
@@ -26,12 +27,11 @@ public class ToSeeTabFragment extends Fragment implements ChangeRvLayout {
     }
 
     @Override
-    public View onCreateView (LayoutInflater inflater,
+    public View onCreateView (@NonNull LayoutInflater inflater,
                               ViewGroup container,
                               Bundle savedInstanceState) {
         mBinding = FragmentToSeeBinding.inflate(inflater, container, false);
-        View view = mBinding.getRoot();
-        return view;
+        return mBinding.getRoot();
     }
 
     @Override
@@ -43,6 +43,6 @@ public class ToSeeTabFragment extends Fragment implements ChangeRvLayout {
     @Override
     public void changeLayout(RecyclerView.LayoutManager layoutManager) {
         mBinding.recyclerView.setLayoutManager(layoutManager);
-        Toast.makeText(getContext(),"LAyout modificato", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(),"Layout modificato", Toast.LENGTH_SHORT).show();
     }
 }

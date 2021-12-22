@@ -31,7 +31,7 @@ public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding mBinding;
     private NavController mNavController;
-    private List<Section> mSectionList = new ArrayList<>();
+    private final List<Section> mSectionList = new ArrayList<>();
     private SectionRecyclerViewAdapter mSectionRecyclerViewAdapter;
 
     @Override

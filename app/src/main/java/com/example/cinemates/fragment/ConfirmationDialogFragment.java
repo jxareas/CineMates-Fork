@@ -27,7 +27,7 @@ public class ConfirmationDialogFragment extends DialogFragment {
 
     // Defines the listener interface
     public interface ConfirmationDialogListener {
-        void onFinisConfirmationDialog(ConfirmationTypo typo);
+        void onFinishConfirmationDialog(ConfirmationTypo typo);
     }
 
     /**
@@ -84,7 +84,7 @@ public class ConfirmationDialogFragment extends DialogFragment {
     private void sendBackResult(ConfirmationTypo typo) {
         // Notice the use of `getTargetFragment` which will be set when the dialog is displayed
         ConfirmationDialogListener listener = (ConfirmationDialogListener) getTargetFragment();
-        listener.onFinisConfirmationDialog(typo);
+        listener.onFinishConfirmationDialog(typo);
         dismiss();
     }
 }
