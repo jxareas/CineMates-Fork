@@ -1,5 +1,6 @@
 package com.example.cinemates.adapter;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,9 +8,10 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.cinemates.DetailMediaContentActivity;
 import com.example.cinemates.databinding.ListItemMediaPosterBinding;
-import com.example.cinemates.databinding.ListItemPersonInformationBinding;
 import com.example.cinemates.model.Movie;
+import com.example.cinemates.model.MovieModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +23,7 @@ import info.movito.themoviedbapi.model.people.PersonCast;
  * Created 15/12/2021 at 16:36
  */
 public class SectionItemsRecyclerViewAdapter extends EmptyRecyclerView.Adapter<SectionItemsRecyclerViewAdapter.SectionItemViewHolder> {
-    private final List<Movie> dataList = new ArrayList<>();
+    private final List<MovieModel> dataList = new ArrayList<>();
 
     @NonNull
     @Override
@@ -33,10 +35,16 @@ public class SectionItemsRecyclerViewAdapter extends EmptyRecyclerView.Adapter<S
 
     @Override
     public void onBindViewHolder(@NonNull SectionItemViewHolder holder, int position) {
-        Movie movie = dataList.get(position);/*
+        MovieModel movie = dataList.get(position);
         holder.mBinding.setMovie(movie);
-        holder.mBinding.executePendingBindings();*/
-
+        holder.mBinding.executePendingBindings();
+        holder.mBinding.getRoot().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), DetailMediaContentActivity.class);
+                view.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -44,7 +52,7 @@ public class SectionItemsRecyclerViewAdapter extends EmptyRecyclerView.Adapter<S
         return dataList.size();
     }
 
-    public void addItems(List<Movie> dataList) {
+    public void addItems(List<MovieModel> dataList) {
         this.dataList.addAll(dataList);
         notifyDataSetChanged();
     }

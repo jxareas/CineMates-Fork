@@ -60,6 +60,7 @@ public class HomeFragment extends Fragment {
         mBinding = FragmentHomeBinding.inflate(inflater, container, false);
         mBinding.recyclerView.setAdapter(mSectionRecyclerViewAdapter);
 
+
         // RecyclerView Pagination
         // Loading next page of api response
         mBinding.recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {

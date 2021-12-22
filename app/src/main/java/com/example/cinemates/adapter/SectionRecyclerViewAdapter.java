@@ -1,5 +1,6 @@
 package com.example.cinemates.adapter;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -15,6 +16,7 @@ import com.example.cinemates.databinding.ListItemPersonInformationBinding;
 import com.example.cinemates.databinding.SectionRowBinding;
 import com.example.cinemates.fragment.HomeFragmentDirections;
 import com.example.cinemates.model.Movie;
+import com.example.cinemates.model.MovieModel;
 import com.example.cinemates.model.Section;
 
 import java.util.ArrayList;
@@ -28,6 +30,7 @@ import info.movito.themoviedbapi.model.people.PersonCast;
  */
 public class SectionRecyclerViewAdapter extends RecyclerView.Adapter<SectionRecyclerViewAdapter.SectionViewHolder> {
     private final List<Section> dataList = new ArrayList<>();
+    private static final String TAG = SectionItemsRecyclerViewAdapter.class.getSimpleName();
 
     @NonNull
     @Override
@@ -42,11 +45,12 @@ public class SectionRecyclerViewAdapter extends RecyclerView.Adapter<SectionRecy
         Section section = dataList.get(position);
         holder.mBinding.setSection(section);
         holder.mBinding.executePendingBindings();
-        List<Movie> movies_of_section = section.getSectionItems();
+        List<MovieModel> movies_of_section = section.getSectionItems();
 
         SectionItemsRecyclerViewAdapter sectionItemsRecyclerViewAdapter = new SectionItemsRecyclerViewAdapter();
         sectionItemsRecyclerViewAdapter.addItems(movies_of_section);
         holder.mBinding.recyclerView.setAdapter(sectionItemsRecyclerViewAdapter);
+        holder.mBinding.recyclerView.setEmptyView(holder.mBinding.emptyView.getRoot());
 
 
     }

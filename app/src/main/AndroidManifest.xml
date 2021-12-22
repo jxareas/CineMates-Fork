@@ -27,9 +27,7 @@
             android:exported="false"
             android:label="@string/title_activity_detail_media_content" />
 
-        <meta-data
-            android:name = "apiKey"
-            android:value = "${API_KEY}"/>
+       
     </application>
 
 </manifest>

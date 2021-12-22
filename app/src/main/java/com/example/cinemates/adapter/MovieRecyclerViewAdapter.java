@@ -45,6 +45,7 @@ public class MovieRecyclerViewAdapter extends EmptyRecyclerView.Adapter<MovieRec
             }
         });
 
+
     }
 
     @Override
