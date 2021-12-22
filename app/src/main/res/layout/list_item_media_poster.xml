@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-
+<layout>
+    <data>
+        <variable
+            name="movie"
+            type="com.example.cinemates.model.MovieModel" />
+    </data>
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -36,6 +41,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:lines="2"
+                        android:text="@{movie.title}"
                         tools:text="Movie Title" />
 
                     <ImageButton
@@ -57,3 +63,4 @@
 
 
     </LinearLayout>
+</layout>

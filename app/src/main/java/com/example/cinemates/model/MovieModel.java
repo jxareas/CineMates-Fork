@@ -2,7 +2,11 @@ package com.example.cinemates.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.widget.ImageView;
 
+import androidx.databinding.BindingAdapter;
+
+import com.bumptech.glide.Glide;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -100,6 +104,14 @@ public class MovieModel implements Parcelable {
         dest.writeFloat(vote_average);
         dest.writeString(movie_overview);
         dest.writeString(original_language);
+    }
+
+    @BindingAdapter("android:loadImage")
+    public static void loadImage(ImageView imageView, String imageUri) {
+        Glide.with(imageView)
+                .load(imageUri)
+                .into(imageView);
+
     }
 
     @Override

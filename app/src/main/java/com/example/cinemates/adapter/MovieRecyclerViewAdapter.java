@@ -1,6 +1,7 @@
 package com.example.cinemates.adapter;
 
 import android.content.Intent;
+import android.content.pm.ModuleInfo;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import com.example.cinemates.DetailMediaContentActivity;
 import com.example.cinemates.databinding.ListItemMediaBinding;
 import com.example.cinemates.model.Movie;
+import com.example.cinemates.model.MovieModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +22,7 @@ import java.util.List;
  * Created 15/12/2021 at 16:36
  */
 public class MovieRecyclerViewAdapter extends EmptyRecyclerView.Adapter<MovieRecyclerViewAdapter.MovieViewHolder> {
-    private final List<Movie> dataList = new ArrayList<>();
+    private final List<MovieModel> dataList = new ArrayList<>();
 
     @NonNull
     @Override
@@ -32,7 +34,7 @@ public class MovieRecyclerViewAdapter extends EmptyRecyclerView.Adapter<MovieRec
 
     @Override
     public void onBindViewHolder(MovieViewHolder holder, int position) {
-        Movie movie = dataList.get(position);
+        MovieModel movie = dataList.get(position);
         holder.mBinding.setMovie(movie);
         holder.mBinding.executePendingBindings();
         holder.mBinding.getRoot().setOnClickListener(new View.OnClickListener() {
@@ -50,7 +52,7 @@ public class MovieRecyclerViewAdapter extends EmptyRecyclerView.Adapter<MovieRec
         return dataList.size();
     }
 
-    public void addItems(List<Movie> dataList) {
+    public void addItems(List<MovieModel> dataList) {
         this.dataList.addAll(dataList);
         notifyDataSetChanged();
     }

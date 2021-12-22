@@ -20,6 +20,7 @@ import com.example.cinemates.adapter.SectionRecyclerViewAdapter;
 import com.example.cinemates.databinding.FragmentHomeBinding;
 import com.example.cinemates.model.Movie;
 import com.example.cinemates.model.Section;
+import com.example.cinemates.viewModels.MovieListViewModel;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -33,6 +34,8 @@ public class HomeFragment extends Fragment {
     private NavController mNavController;
     private final List<Section> mSectionList = new ArrayList<>();
     private SectionRecyclerViewAdapter mSectionRecyclerViewAdapter;
+    private MovieListViewModel mViewModel;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
