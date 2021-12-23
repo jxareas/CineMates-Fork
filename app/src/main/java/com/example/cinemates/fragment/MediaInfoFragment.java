@@ -5,14 +5,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cinemates.adapter.GenreRecyclerViewAdapter;
 import com.example.cinemates.databinding.FragmentMediaInfoBinding;
+import com.example.cinemates.databinding.LayoutBackdropCollectionBinding;
 import com.example.cinemates.model.GenreModel;
 import com.example.cinemates.model.MovieModel;
 import com.example.cinemates.viewModels.MovieListViewModel;
@@ -49,10 +52,22 @@ public class MediaInfoFragment extends Fragment {
         //set adapter to recycler view
         mBinding.recyclerViewGenres.setAdapter(mGenreAdapter);
 
+
+
         return mBinding.getRoot();
     }
 
-
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        mBinding.backdropCollection.getRoot().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO navigate to fragment for show movies in this collection
+                Toast.makeText(view.getContext(), "Collection: "+mMovieModel.getBelongs_to_collection().getName(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
     @Override
     public void onDestroyView() {

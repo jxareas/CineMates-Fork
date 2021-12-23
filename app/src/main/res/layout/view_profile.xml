@@ -5,7 +5,6 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:id="@+id/view_profile"
-
     android:padding="20dp">
 
     <androidx.cardview.widget.CardView

@@ -54,7 +54,7 @@ public class DetailMediaContentActivity extends AppCompatActivity {
         mAdapter = new ViewPager2Adapter(this);
         ArrayList<Fragment> fragments = new ArrayList<>();//creates an ArrayList of Fragments
         fragments.add(new MediaInfoFragment(mMovieModel));
-        fragments.add(new MediaCastFragment(mMovieModel));
+//        fragments.add(new MediaCastFragment(mMovieModel));
         mAdapter.setData(fragments);// sets the data for the adapter
         mBinding.viewPager.setAdapter(mAdapter);
     }
@@ -88,7 +88,6 @@ public class DetailMediaContentActivity extends AppCompatActivity {
                 //observing for any data changes
                 if (movieModel != null) {
                     mMovieModel = movieModel;
-                    Log.d("Detail", mMovieModel.toString());
                     mBinding.setMovie(movieModel);
                     //Viene effettuata una seconda chiamata al metodo
                     //in quanto questo metodo è asincrono, quindi con la prima chiamata

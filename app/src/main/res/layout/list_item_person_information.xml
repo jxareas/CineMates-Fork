@@ -5,8 +5,8 @@
     <data>
 
         <variable
-            name="actor"
-            type="info.movito.themoviedbapi.model.people.PersonCast" />
+            name="cast"
+            type="com.example.cinemates.model.CastModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -27,6 +27,8 @@
 
             <ImageView
                 android:id="@+id/ivAvatar"
+                android:scaleType="centerCrop"
+                app:loadImage="@{cast.profile_path}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 tools:src="@tools:sample/avatars" />
@@ -38,7 +40,7 @@
             android:layout_height="match_parent"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:text="@{actor.name}"
+            android:text="@{cast.name}"
             android:textColor="@color/alabaster"
             android:textSize="14sp"
             android:textStyle="bold"
@@ -52,7 +54,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginStart="20dp"
-            android:text="@{actor.character}"
+            android:text="@{cast.character}"
             android:layout_marginEnd="20dp"
             android:textColor="@color/geyser"
             android:textSize="14sp"
