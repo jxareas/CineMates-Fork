@@ -54,7 +54,7 @@ public class HomeFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater,
+    public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container,
                              Bundle savedInstanceState) {
         mBinding = FragmentHomeBinding.inflate(inflater, container, false);
@@ -113,7 +113,6 @@ public class HomeFragment extends Fragment {
         List<MovieModel> sectionThreeItems = new ArrayList<>();
 
         observePopularMovies(sectionOneItems);
-//        observeAnyChange(sectionOneItems);
 
         //Create sections
         mSectionList.add(new Section(sectionOneName, sectionOneItems));
@@ -122,6 +121,7 @@ public class HomeFragment extends Fragment {
 
         //Add section list into recycler view
         mSectionRecyclerViewAdapter.addItems(mSectionList);
+
 
     }
 
@@ -147,27 +147,6 @@ public class HomeFragment extends Fragment {
     }
 
 
-    //Observing any data change
-    private void observeAnyChange(List<MovieModel> popularMovies) {
-
-        mViewModel.getMovies().observe(this, new Observer<List<MovieModel>>() {
-            @Override
-            public void onChanged(List<MovieModel> movieModels) {
-                //observing for any data change
-                if (movieModels != null) {
-                    for (MovieModel model : movieModels) {
-                        //get the data in the log
-                        Log.d(TAG, "onChanged: " + model.getTitle());
-
-                        popularMovies.addAll(movieModels);
-
-                    }
-                }
-
-            }
-        });
-
-    }
 
     @Override
     public void onDestroyView() {

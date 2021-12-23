@@ -100,7 +100,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="50"
-                android:text="@{String.valueOf(movie.runtime)}"
+                app:setRuntime="@{movie.runtime}"
                 android:textColor="@color/alabaster"
                 android:textSize="14sp"
                 android:textStyle="bold"
@@ -214,9 +214,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="50"
-                android:text="@{String.valueOf(movie.budget)}"
                 android:textColor="@color/alabaster"
                 android:textSize="14sp"
+                app:setBudget="@{movie.budget}"
                 android:textStyle="bold"
                 tools:text="100.000.000 USD" />
         </androidx.appcompat.widget.LinearLayoutCompat>

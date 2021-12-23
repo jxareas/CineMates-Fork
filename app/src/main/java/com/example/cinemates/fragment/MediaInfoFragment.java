@@ -35,7 +35,9 @@ public class MediaInfoFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         mBinding = FragmentMediaInfoBinding.inflate(inflater, container, false);
+
         mBinding.setMovie(mMovieModel);
+
         return mBinding.getRoot();
     }
 

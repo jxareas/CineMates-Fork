@@ -3,6 +3,7 @@ package com.example.cinemates.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.databinding.BindingAdapter;
 
@@ -11,6 +12,9 @@ import com.example.cinemates.R;
 import com.example.cinemates.util.Constants;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.text.NumberFormat;
+import java.util.Locale;
 
 public class MovieModel implements Parcelable {
     //model class for our movies
@@ -166,6 +170,19 @@ public class MovieModel implements Parcelable {
                 .load(Constants.POSTER_URL + posterPath)
                 .placeholder(R.drawable.ic_baseline_image_not_supported_24)
                 .into(imageView);
+    }
+
+    @BindingAdapter("setRuntime")
+    public static void setRuntime(TextView textView, int runtime) {
+        int hours = runtime / 60; //since both are ints, you get an int
+        int minutes = runtime % 60;
+        String formatted_runtime = hours + " hours " + minutes + " min";
+        textView.setText(formatted_runtime);
+    }
+
+    @BindingAdapter("setBudget")
+    public static void setBudget(TextView textView, float budget) {
+        textView.setText(NumberFormat.getCurrencyInstance(Locale.getDefault()).format(budget));
     }
 
     @Override
