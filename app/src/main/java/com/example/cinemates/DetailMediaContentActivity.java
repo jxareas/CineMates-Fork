@@ -53,7 +53,7 @@ public class DetailMediaContentActivity extends AppCompatActivity {
     private void setupViewPager2() {
         mAdapter = new ViewPager2Adapter(this);
         ArrayList<Fragment> fragments = new ArrayList<>();//creates an ArrayList of Fragments
-        fragments.add(new MediaInfoFragment(mMovieModel));
+        fragments.add(new MediaInfoFragment(mMovieModel));// TODO maybe passing an observer
 //        fragments.add(new MediaCastFragment(mMovieModel));
         mAdapter.setData(fragments);// sets the data for the adapter
         mBinding.viewPager.setAdapter(mAdapter);
