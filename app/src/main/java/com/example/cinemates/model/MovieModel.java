@@ -14,18 +14,18 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
+
+import info.movito.themoviedbapi.model.Genre;
 
 public class MovieModel implements Parcelable {
     //model class for our movies
     private String title;
     private String original_title;
     private String poster_path;
-
-    @SerializedName("backdrop_path")
-    @Expose
     private String backdrop_path;
-
     private String release_date;
     private int id;
     private float vote_average;
@@ -35,6 +35,7 @@ public class MovieModel implements Parcelable {
     private String original_language;
     private String status;
     private int budget;
+    private List<GenreModel> genres = new ArrayList<>();
 
 
     //for the purpose of simplicity ,i will use the release date  instead of category
@@ -43,7 +44,7 @@ public class MovieModel implements Parcelable {
 
     private MovieModel(String title, String original_title, String poster_path, String backdrop_path,
                        String release_date, int id, float vote_average, String years, int runtime,
-                       String overview, String original_language, String status, int budget) {
+                       String overview, String original_language, String status, int budget, List<GenreModel> genres) {
         this.title = title;
         this.original_title = original_title;
         this.poster_path = poster_path;
@@ -57,6 +58,7 @@ public class MovieModel implements Parcelable {
         this.original_language = original_language;
         this.status = status;
         this.budget = budget;
+        this.genres = genres;
     }
 
     protected MovieModel(Parcel in) {
@@ -123,6 +125,9 @@ public class MovieModel implements Parcelable {
         return runtime;
     }
 
+    public List<GenreModel> getGenres() {
+        return genres;
+    }
 
     public int getId() {
         return id;
@@ -162,6 +167,8 @@ public class MovieModel implements Parcelable {
         dest.writeString(backdrop_path);
         dest.writeString(status);
         dest.writeInt(budget);
+        dest.writeList(genres);
+
     }
 
     @BindingAdapter("loadImage")
@@ -193,12 +200,15 @@ public class MovieModel implements Parcelable {
                 ", poster_path='" + poster_path + '\'' +
                 ", backdrop_path='" + backdrop_path + '\'' +
                 ", release_date='" + release_date + '\'' +
-                ", movie_id=" + id +
+                ", id=" + id +
                 ", vote_average=" + vote_average +
                 ", years='" + years + '\'' +
-                ", duration=" + runtime +
+                ", runtime=" + runtime +
                 ", overview='" + overview + '\'' +
                 ", original_language='" + original_language + '\'' +
+                ", status='" + status + '\'' +
+                ", budget=" + budget +
+                ", genres=" + genres +
                 '}';
     }
 }
