@@ -5,14 +5,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.cinemates.databinding.FragmentMediaCastBinding;
 import com.example.cinemates.databinding.FragmentMediaInfoBinding;
 
 
 public class MediaCastFragment extends Fragment {
 
-    private FragmentMediaInfoBinding mBinding;
+    private FragmentMediaCastBinding mBinding;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -21,10 +23,10 @@ public class MediaCastFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        mBinding = FragmentMediaInfoBinding.inflate(inflater, container, false);
+        mBinding = FragmentMediaCastBinding.inflate(inflater, container, false);
         return mBinding.getRoot();
     }
 
