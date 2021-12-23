@@ -22,16 +22,18 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cinemates.R;
-import com.example.cinemates.adapter.FragmentStandardListsAdapter;
+import com.example.cinemates.adapter.ViewPager2Adapter;
 import com.example.cinemates.databinding.FragmentStandardListsBinding;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+
+import java.util.ArrayList;
 
 
 public class StandardListsFragment extends Fragment {
 
     private FragmentStandardListsBinding mBinding;
-    private FragmentStandardListsAdapter mFragmentStandardListsAdapter;
+    private ViewPager2Adapter mAdapter;
     private GridLayoutManager mGridLayoutManager;
     private LinearLayoutManager mLinearLayoutManager;
     private boolean layoutGrid = false;
@@ -41,8 +43,6 @@ public class StandardListsFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-
-        mFragmentStandardListsAdapter = new FragmentStandardListsAdapter(getParentFragmentManager(), getLifecycle());
 
         mGridLayoutManager = new GridLayoutManager(getContext(), 3);
         mLinearLayoutManager = new LinearLayoutManager(getContext());
@@ -55,16 +55,16 @@ public class StandardListsFragment extends Fragment {
         // Inflate the layout for this fragment
         mBinding = FragmentStandardListsBinding.inflate(inflater, container, false);
 
-        mBinding.viewPager.setAdapter(mFragmentStandardListsAdapter);
-
         return mBinding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view,
                               @Nullable Bundle savedInstanceState) {
-        setupAppBar(view);
+        super.onViewCreated(view, savedInstanceState);
 
+        setupAppBar(view);
+        setupViewPager2();
         setupTabLayout();
 
         mBinding.toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
@@ -103,21 +103,18 @@ public class StandardListsFragment extends Fragment {
     }
 
     private void setupTabLayout() {
-        TabLayout tabLayout = mBinding.tabLayout;
+        final TabLayout tabLayout = mBinding.tabLayout;
+        final ArrayList<String> titles = new ArrayList<>();
+        titles.add("To See");
+        titles.add("Seen");
         new TabLayoutMediator(tabLayout, mBinding.viewPager, new TabLayoutMediator.TabConfigurationStrategy() {
             @Override
             public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
-                switch (position) {
-                    case 0:
-                        tab.setText("To See");
-                        break;
-                    case 1:
-                        tab.setText("Seen");
-                        break;
-                }
+                tab.setText(titles.get(position));
             }
         }).attach();
     }
+
 
     private void setupAppBar(@NonNull View view) {
         NavController navController = Navigation.findNavController(view);
@@ -127,6 +124,15 @@ public class StandardListsFragment extends Fragment {
 
         NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration);
     }
+    private void setupViewPager2() {
+        mAdapter = new ViewPager2Adapter(getActivity());
+        ArrayList<Fragment> fragments = new ArrayList<>();//creates an ArrayList of Fragments
+        fragments.add(new SearchMovieFragment());
+        fragments.add(new SearchActorFragment());
+        mAdapter.setData(fragments);// sets the data for the adapter
+        mBinding.viewPager.setAdapter(mAdapter);
+    }
+
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
@@ -138,7 +144,7 @@ public class StandardListsFragment extends Fragment {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_switch_grid:
-                Toast.makeText(getContext(), "List", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Grid", Toast.LENGTH_SHORT).show();
 
                 //hide menu switch grid
                 //show menu switch list

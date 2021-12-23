@@ -11,8 +11,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -22,16 +20,18 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cinemates.R;
-import com.example.cinemates.adapter.FragmentSearchAdapter;
+import com.example.cinemates.adapter.ViewPager2Adapter;
 import com.example.cinemates.databinding.FragmentSearchBinding;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+
+import java.util.ArrayList;
 
 
 public class SearchFragment extends Fragment {
 
     private FragmentSearchBinding mBinding;
-    private FragmentSearchAdapter mAdapter;
+    private ViewPager2Adapter mAdapter;
     private LinearLayoutManager mLinearLayoutManager;
     private GridLayoutManager mGridLayoutManager;
     private boolean layoutGrid = false;
@@ -41,7 +41,6 @@ public class SearchFragment extends Fragment {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
 
-        mAdapter = new FragmentSearchAdapter(getParentFragmentManager(), getLifecycle());
         mLinearLayoutManager = new LinearLayoutManager(getContext());
         mGridLayoutManager = new GridLayoutManager(getContext(), 3);
 
@@ -53,7 +52,6 @@ public class SearchFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         mBinding = FragmentSearchBinding.inflate(inflater, container, false);
-        mBinding.viewPager.setAdapter(mAdapter);
 
         return mBinding.getRoot();
     }
@@ -63,6 +61,7 @@ public class SearchFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         setupAppBar(view);
+        setupViewPager2();
         setupTabLayout();
 
         // Listen menu item click and change layout into recyclerview
@@ -125,18 +124,14 @@ public class SearchFragment extends Fragment {
 
 
     private void setupTabLayout() {
-        TabLayout tabLayout = mBinding.tabLayout;
+        final TabLayout tabLayout = mBinding.tabLayout;
+        final ArrayList<String> titles = new ArrayList<>();
+        titles.add("Movie");
+        titles.add("Actor");
         new TabLayoutMediator(tabLayout, mBinding.viewPager, new TabLayoutMediator.TabConfigurationStrategy() {
             @Override
             public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
-                switch (position) {
-                    case 0:
-                        tab.setText("Movies");
-                        break;
-                    case 1:
-                        tab.setText("Actors");
-                        break;
-                }
+                tab.setText(titles.get(position));
             }
         }).attach();
     }
@@ -148,6 +143,14 @@ public class SearchFragment extends Fragment {
         Toolbar toolbar = view.findViewById(R.id.toolbar);
 
         NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration);
+    }
+    private void setupViewPager2() {
+        mAdapter = new ViewPager2Adapter(getActivity());
+        ArrayList<Fragment> fragments = new ArrayList<>();//creates an ArrayList of Fragments
+        fragments.add(new SearchMovieFragment());
+        fragments.add(new SearchActorFragment());
+        mAdapter.setData(fragments);// sets the data for the adapter
+        mBinding.viewPager.setAdapter(mAdapter);
     }
 
     @Override
