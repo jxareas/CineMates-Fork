@@ -160,6 +160,8 @@
                 android:layout_weight="50"
                 android:textColor="@color/alabaster"
                 android:textSize="14sp"
+                android:autoSizeTextType="uniform"
+                app:setProductionCountries="@{movie.production_countries}"
                 android:textStyle="bold"
                 tools:text="Production countries\nProduction countries" />
         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -188,6 +190,7 @@
                 android:layout_weight="50"
                 android:textColor="@color/alabaster"
                 android:textSize="14sp"
+                app:setProductionCompanies="@{movie.production_companies}"
                 android:textStyle="bold"
                 tools:text="Production companies\nProduction companies" />
         </androidx.appcompat.widget.LinearLayoutCompat>

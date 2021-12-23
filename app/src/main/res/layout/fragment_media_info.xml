@@ -10,118 +10,99 @@
             type="com.example.cinemates.model.MovieModel" />
     </data>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:nestedScrollingEnabled="true"
+        android:orientation="vertical"
+        android:paddingStart="20dp"
+        tools:context=".fragment.MediaInfoFragment">
+
+
+        <com.borjabravo.readmoretextview.ReadMoreTextView
+            android:id="@+id/readMoreTextV"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingStart="20dp"
-            tools:context=".fragment.MediaInfoFragment">
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:text="@{movie.overview}"
+            android:textColor="@color/alabaster"
+            android:textSize="14sp"
+            app:colorClickableText="@color/vermilion_100"
+            app:trimLength="100"
+            app:trimMode="trimModeLength"
+            tools:text="@tools:sample/lorem/random" />
 
-            <com.borjabravo.readmoretextview.ReadMoreTextView
-                android:id="@+id/readMoreTextV"
-                android:layout_width="match_parent"
-                android:paddingTop="10dp"
-                android:layout_height="wrap_content"
-                android:text="@{movie.overview}"
-                android:textColor="@color/alabaster"
-                android:textSize="14sp"
-                app:colorClickableText="@color/vermilion_100"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:trimLength="100"
-                app:trimMode="trimModeLength" />
+        <TextView
+            android:id="@+id/textTitleGenres"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Genres"
+            android:textColor="@color/geyser"
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/textTitleGenres"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Genres"
-                android:textColor="@color/geyser"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/readMoreTextV" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewGenres"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_chip_text" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewGenres"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textTitleGenres"
-                tools:listitem="@layout/item_chip_text" />
+        <TextView
+            android:id="@+id/textTitleCrew"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Crew"
+            android:textColor="@color/alabaster"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/textTitleCrew"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Crew"
-                android:textColor="@color/alabaster"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerViewGenres" />
+        <GridView
+            android:id="@+id/listCrew"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-            <GridView
-                android:id="@+id/listCrew"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textTitleCrew" />
+        <TextView
+            android:id="@+id/textTitleInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Info"
+            android:textColor="@color/alabaster"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/textTitleInfo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Info"
-                android:textColor="@color/alabaster"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/listCrew" />
-
-            <TextView
-                android:id="@+id/textReleaseInformationTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Release information"
-                android:textColor="@color/geyser"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textTitleInfo" />
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textReleaseInformationTitle">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerViewReleaseDates"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintEnd_toEndOf="parent" />
+        <TextView
+            android:id="@+id/textReleaseInformationTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Release information"
+            android:textColor="@color/geyser"
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
 
-                <include
-                    layout="@layout/layout_movie_info"
-                    app:movie="@{movie}" />
-            </androidx.appcompat.widget.LinearLayoutCompat>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewReleaseDates"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <include
+            layout="@layout/layout_movie_info"
+            app:movie="@{movie}" />
+
+        <include
+            layout="@layout/layout_backdrop_collection"
+            app:collection="@{movie.belongs_to_collection}" />
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

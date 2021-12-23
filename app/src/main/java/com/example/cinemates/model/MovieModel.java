@@ -36,7 +36,10 @@ public class MovieModel implements Parcelable {
     private String status;
     private int budget;
     private int revenue;
-    private List<GenreModel> genres ;
+    private List<GenreModel> genres;
+    private List<ProductionCountriesModel> production_countries;
+    private List<ProductionCompaniesModel> production_companies;
+    private CollectionModel belongs_to_collection;
 
 
     //for the purpose of simplicity ,i will use the release date  instead of category
@@ -46,7 +49,8 @@ public class MovieModel implements Parcelable {
     private MovieModel(String title, String original_title, String poster_path, String backdrop_path,
                        String release_date, int id, float vote_average, String years, int runtime,
                        String overview, String original_language, String status, int budget, List<GenreModel> genres,
-                       int revenue) {
+                       int revenue, CollectionModel collectionModel, List<ProductionCountriesModel> production_countries,
+                       List<ProductionCompaniesModel> production_companies) {
         this.title = title;
         this.original_title = original_title;
         this.poster_path = poster_path;
@@ -62,6 +66,10 @@ public class MovieModel implements Parcelable {
         this.budget = budget;
         this.genres = genres;
         this.revenue = revenue;
+        this.belongs_to_collection = collectionModel;
+        this.production_countries = production_countries;
+        this.production_companies = production_companies;
+
     }
 
     protected MovieModel(Parcel in) {
@@ -79,7 +87,10 @@ public class MovieModel implements Parcelable {
         budget = in.readInt();
         status = in.readString();
         genres = new ArrayList<>();
+        production_countries = new ArrayList<>();
+        production_companies = new ArrayList<>();
         revenue = in.readInt();
+        belongs_to_collection = in.readParcelable(CollectionModel.class.getClassLoader());
     }
 
     public static final Creator<MovieModel> CREATOR = new Creator<MovieModel>() {
@@ -122,8 +133,16 @@ public class MovieModel implements Parcelable {
         return budget;
     }
 
+    public List<ProductionCountriesModel> getProduction_countries() {
+        return production_countries;
+    }
+
     public int getRevenue() {
         return revenue;
+    }
+
+    public List<ProductionCompaniesModel> getProduction_companies() {
+        return production_companies;
     }
 
     public String getYears() {
@@ -140,6 +159,10 @@ public class MovieModel implements Parcelable {
 
     public int getId() {
         return id;
+    }
+
+    public CollectionModel getBelongs_to_collection() {
+        return belongs_to_collection;
     }
 
     public float getVote_average() {
@@ -177,7 +200,10 @@ public class MovieModel implements Parcelable {
         dest.writeString(status);
         dest.writeInt(budget);
         dest.writeList(genres);
+        dest.writeList(production_countries);
+        dest.writeList(production_companies);
         dest.writeInt(revenue);
+        dest.writeParcelable(belongs_to_collection, i);
 
     }
 
@@ -202,6 +228,24 @@ public class MovieModel implements Parcelable {
         textView.setText(NumberFormat.getCurrencyInstance(Locale.getDefault()).format(value));
     }
 
+    @BindingAdapter("setProductionCountries")
+    public static void setProductionCountries(TextView textView, List<ProductionCountriesModel> list) {
+        String value = "";
+        for (ProductionCountriesModel pc : list) {
+            value += pc.getName() + "\n";
+        }
+        textView.setText(value);
+    }
+
+    @BindingAdapter("setProductionCompanies")
+    public static void setProductionCompanies(TextView textView, List<ProductionCompaniesModel> list) {
+        String value = "";
+        for (ProductionCompaniesModel pc : list) {
+            value += pc.getName() + "\n";
+        }
+        textView.setText(value);
+    }
+
     @Override
     public String toString() {
         return "MovieModel{" +
@@ -218,7 +262,10 @@ public class MovieModel implements Parcelable {
                 ", original_language='" + original_language + '\'' +
                 ", status='" + status + '\'' +
                 ", budget=" + budget +
+                ", revenue=" + revenue +
                 ", genres=" + genres +
+                ", production_countries=" + production_countries +
+                ", belongs_to_collection=" + belongs_to_collection +
                 '}';
     }
 }

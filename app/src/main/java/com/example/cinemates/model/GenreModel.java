@@ -9,7 +9,7 @@ import info.movito.themoviedbapi.model.Genre;
  * @author Antonio Di Nuzzo
  * Created 23/12/2021 at 11:20
  */
-public class GenreModel {
+public class GenreModel implements Parcelable {
     private int id;
     private String name;
 
@@ -42,6 +42,17 @@ public class GenreModel {
             return new GenreModel[size];
         }
     };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(id);
+        parcel.writeString(name);
+    }
 
     @Override
     public String toString() {

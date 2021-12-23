@@ -62,8 +62,6 @@ public class DetailMediaContentActivity extends AppCompatActivity {
     private void getDataFromIntent() {
         if (getIntent().hasExtra("movie")) {
             mMovieModel = getIntent().getParcelableExtra("movie");
-//            mBinding.setMovie(mMovieModel);
-
         }
 
     }
@@ -90,7 +88,7 @@ public class DetailMediaContentActivity extends AppCompatActivity {
                 //observing for any data changes
                 if (movieModel != null) {
                     mMovieModel = movieModel;
-
+                    Log.d("Detail", mMovieModel.toString());
                     mBinding.setMovie(movieModel);
                     //Viene effettuata una seconda chiamata al metodo
                     //in quanto questo metodo è asincrono, quindi con la prima chiamata
