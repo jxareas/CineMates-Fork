@@ -15,49 +15,60 @@ import com.google.gson.annotations.SerializedName;
 public class MovieModel implements Parcelable {
     //model class for our movies
     private String title;
+    private String original_title;
     private String poster_path;
+
+    @SerializedName("backdrop_path")
+    @Expose
+    private String backdrop_path;
+
     private String release_date;
-    private int movie_id;
+    private int id;
     private float vote_average;
     private String years;
-    private int duration;
-    private String plot;
-    @SerializedName("overview")
-    @Expose
-    private String movie_overview;
+    private int runtime;
+    private String overview;
     private String original_language;
+    private String status;
+    private int budget;
 
 
     //for the purpose of simplicity ,i will use the release date  instead of category
     //genres is nested json object , we will learn it later in this series
 
 
-    private MovieModel(String title, String poster_path, String release_date, int movie_id, float vote_average, String years, int duration, String plot, String movie_overview, String original_language) {
+    private MovieModel(String title, String original_title, String poster_path, String backdrop_path,
+                       String release_date, int id, float vote_average, String years, int runtime,
+                       String overview, String original_language, String status, int budget) {
         this.title = title;
+        this.original_title = original_title;
         this.poster_path = poster_path;
+        this.backdrop_path = backdrop_path;
         this.release_date = release_date;
-        this.movie_id = movie_id;
+        this.id = id;
         this.vote_average = vote_average;
         this.years = years;
-        this.duration = duration;
-        this.plot = plot;
-        this.movie_overview = movie_overview;
+        this.runtime = runtime;
+        this.overview = overview;
         this.original_language = original_language;
+        this.status = status;
+        this.budget = budget;
     }
-
 
     protected MovieModel(Parcel in) {
         title = in.readString();
         poster_path = in.readString();
         release_date = in.readString();
-        movie_id = in.readInt();
+        id = in.readInt();
         vote_average = in.readFloat();
-        movie_overview = in.readString();
+        overview = in.readString();
         original_language = in.readString();
         years = in.readString();
-        duration = in.readInt();
-        plot = in.readString();
-
+        runtime = in.readInt();
+        backdrop_path = in.readString();
+        original_title = in.readString();
+        budget = in.readInt();
+        status = in.readString();
     }
 
     public static final Creator<MovieModel> CREATOR = new Creator<MovieModel>() {
@@ -76,6 +87,14 @@ public class MovieModel implements Parcelable {
         return title;
     }
 
+    public String getOriginal_title() {
+        return original_title;
+    }
+
+    public String getBackdrop_path() {
+        return backdrop_path;
+    }
+
     public String getPoster_path() {
         return poster_path;
     }
@@ -84,28 +103,33 @@ public class MovieModel implements Parcelable {
         return release_date;
     }
 
-    private String getYears() {
+    public String getStatus() {
+        return status;
+    }
+
+    public int getBudget() {
+        return budget;
+    }
+
+    public String getYears() {
         return years;
     }
 
-    private int getDuration() {
-        return duration;
+    public int getRuntime() {
+        return runtime;
     }
 
-    private String getPlot() {
-        return plot;
-    }
 
-    public int getMovie_id() {
-        return movie_id;
+    public int getId() {
+        return id;
     }
 
     public float getVote_average() {
         return vote_average;
     }
 
-    public String getMovie_overview() {
-        return movie_overview;
+    public String getOverview() {
+        return overview;
     }
 
 
@@ -123,14 +147,17 @@ public class MovieModel implements Parcelable {
         dest.writeString(title);
         dest.writeString(poster_path);
         dest.writeString(release_date);
-        dest.writeInt(movie_id);
+        dest.writeInt(id);
         dest.writeFloat(vote_average);
-        dest.writeString(movie_overview);
+        dest.writeString(overview);
         dest.writeString(original_language);
         dest.writeString(poster_path);
         dest.writeString(years);
-        dest.writeString(plot);
-        dest.writeInt(duration);
+        dest.writeInt(runtime);
+        dest.writeString(original_title);
+        dest.writeString(backdrop_path);
+        dest.writeString(status);
+        dest.writeInt(budget);
     }
 
     @BindingAdapter("loadImage")
@@ -145,14 +172,15 @@ public class MovieModel implements Parcelable {
     public String toString() {
         return "MovieModel{" +
                 "title='" + title + '\'' +
+                ", original_title='" + original_title + '\'' +
                 ", poster_path='" + poster_path + '\'' +
+                ", backdrop_path='" + backdrop_path + '\'' +
                 ", release_date='" + release_date + '\'' +
-                ", movie_id=" + movie_id +
+                ", movie_id=" + id +
                 ", vote_average=" + vote_average +
                 ", years='" + years + '\'' +
-                ", duration=" + duration +
-                ", plot='" + plot + '\'' +
-                ", movie_overview='" + movie_overview + '\'' +
+                ", duration=" + runtime +
+                ", overview='" + overview + '\'' +
                 ", original_language='" + original_language + '\'' +
                 '}';
     }

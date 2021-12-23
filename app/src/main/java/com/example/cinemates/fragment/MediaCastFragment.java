@@ -10,11 +10,17 @@ import androidx.fragment.app.Fragment;
 
 import com.example.cinemates.databinding.FragmentMediaCastBinding;
 import com.example.cinemates.databinding.FragmentMediaInfoBinding;
+import com.example.cinemates.model.MovieModel;
 
 
 public class MediaCastFragment extends Fragment {
 
     private FragmentMediaCastBinding mBinding;
+    private MovieModel mMovieModel;
+
+    public MediaCastFragment(MovieModel movieModel) {
+        this.mMovieModel = movieModel;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -27,6 +33,7 @@ public class MediaCastFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         mBinding = FragmentMediaCastBinding.inflate(inflater, container, false);
+
         return mBinding.getRoot();
     }
 

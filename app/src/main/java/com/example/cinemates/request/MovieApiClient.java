@@ -21,44 +21,57 @@ import retrofit2.Response;
 
 public class MovieApiClient {
     //Livedata for Search
-    private MutableLiveData<List<MovieModel>> mMovies ;
+    private MutableLiveData<List<MovieModel>> mMovies;
 
-    private static  MovieApiClient instance;
+    private static MovieApiClient instance;
 
     //making Global Runnable
     private RetrieveMoviesRunnable mRetrieveMoviesRunnable;
 
+    //making Global Runnable
+    private RetrieveMovieById mRetrieveMovieById;
+
     //Live data for popular movies
     private MutableLiveData<List<MovieModel>> mMoviesPop;
+
+    //Live data for movie searched
+    private MutableLiveData<MovieModel> mMovieSearched;
 
     //making popular Runnable
     private RetrieveMoviesRunnablePop mRetrieveMoviesRunnablePop;
 
-    public static MovieApiClient getInstance(){
-        if(instance==null){
+    public static MovieApiClient getInstance() {
+        if (instance == null) {
             instance = new MovieApiClient();
         }
         return instance;
     }
-    private MovieApiClient(){
+
+    private MovieApiClient() {
         mMovies = new MutableLiveData<>();
         mMoviesPop = new MutableLiveData<>();
+        mMovieSearched = new MutableLiveData<>();
     }
 
 
     public LiveData<List<MovieModel>> getMovies() {
         return mMovies;
     }
+
     public LiveData<List<MovieModel>> getMoviesPop() {
         return mMoviesPop;
     }
 
-    public void searchMoviesApi(String query,int pageNumber){
+    public LiveData<MovieModel> getMovieSearched() {
+        return mMovieSearched;
+    }
 
-        if(mRetrieveMoviesRunnable !=null){
+    public void searchMoviesApi(String query, int pageNumber) {
+
+        if (mRetrieveMoviesRunnable != null) {
             mRetrieveMoviesRunnable = null;
         }
-        mRetrieveMoviesRunnable = new RetrieveMoviesRunnable(query,pageNumber);
+        mRetrieveMoviesRunnable = new RetrieveMoviesRunnable(query, pageNumber);
 
         final Future myHandler = AppExecutors.getInstance().networkIO().submit(mRetrieveMoviesRunnable);
 
@@ -68,14 +81,14 @@ public class MovieApiClient {
                 //cancelling the rertrofit call
                 myHandler.cancel(true);
             }
-        },3000, TimeUnit.MILLISECONDS);
+        }, 3000, TimeUnit.MILLISECONDS);
 
-}
+    }
 
 
     public void searchMoviesPop(int pageNumber) {
 
-        if(mRetrieveMoviesRunnablePop !=null){
+        if (mRetrieveMoviesRunnablePop != null) {
             mRetrieveMoviesRunnablePop = null;
         }
         mRetrieveMoviesRunnablePop = new RetrieveMoviesRunnablePop(pageNumber);
@@ -88,14 +101,33 @@ public class MovieApiClient {
                 //cancelling the rertrofit call
                 myHandler2.cancel(true);
             }
-        },1000, TimeUnit.MILLISECONDS);
+        }, 1000, TimeUnit.MILLISECONDS);
+
+    }
+
+    public void searchMovieById(int movie_id) {
+
+        if (mRetrieveMovieById != null) {
+            mRetrieveMovieById = null;
+        }
+        mRetrieveMovieById = new RetrieveMovieById(movie_id);
+
+        final Future myHandler3 = AppExecutors.getInstance().networkIO().submit(mRetrieveMovieById);
+
+        AppExecutors.getInstance().networkIO().schedule(new Runnable() {
+            @Override
+            public void run() {
+                //cancelling the rertrofit call
+                myHandler3.cancel(true);
+            }
+        }, 1000, TimeUnit.MILLISECONDS);
 
     }
 
 
     //retrieving data from REST API by runnable class
     //We have 2 types of Queries: the ID & search Query
-    private class RetrieveMoviesRunnable implements Runnable{
+    private class RetrieveMoviesRunnable implements Runnable {
 
         private String query;
         private int pageNumber;
@@ -108,31 +140,30 @@ public class MovieApiClient {
         }
 
 
-
         @Override
         public void run() {
             //getting the response Objects
-            try{
-                Response response = getMovies(query,pageNumber).execute();
+            try {
+                Response response = getMovies(query, pageNumber).execute();
                 if (cancleRequest) {
                     return;
                 }
 
-                if(response.code()==200){
-                    List<MovieModel> list = new ArrayList<>(((MovieSearchResponse)response.body()).getMovies());
-                    if(pageNumber==1){
+                if (response.code() == 200) {
+                    List<MovieModel> list = new ArrayList<>(((MovieSearchResponse) response.body()).getMovies());
+                    if (pageNumber == 1) {
                         //sending data to live data
                         //postvalue: used for background thread
                         //setValue: not for background thread
                         mMovies.postValue(list);
-                    }else {
+                    } else {
                         List<MovieModel> currentMovies = mMovies.getValue();
                         currentMovies.addAll(list);
                         mMovies.postValue(currentMovies);
                     }
-                }else{
+                } else {
                     String error = response.errorBody().string();
-                    Log.v("Tag","ERROR"+ error);
+                    Log.v("Tag", "ERROR" + error);
                     mMovies.postValue(null);
                 }
 
@@ -143,27 +174,26 @@ public class MovieApiClient {
             }
 
 
+        }
+
+        //search method query
+        private Call<MovieSearchResponse> getMovies(String query, int pageNumber) {
+            return Service.getMovieApi().searchMovie(
+                    Constants.API_KEY,
+                    query,
+                    pageNumber
+            );
 
         }
 
-            //search method query
-            private Call<MovieSearchResponse>  getMovies(String query, int pageNumber){
-                return Service.getMovieApi().searchMovie(
-                        Constants.API_KEY,
-                        query,
-                       pageNumber
-                );
-
-            }
-            private void cancleRequest() {
-                Log.v("Tag", "cancelling Search Request");
-                cancleRequest = true;
-            }
+        private void cancleRequest() {
+            Log.v("Tag", "cancelling Search Request");
+            cancleRequest = true;
+        }
     }
 
 
-
-    private class RetrieveMoviesRunnablePop implements Runnable{
+    private class RetrieveMoviesRunnablePop implements Runnable {
 
         private int pageNumber;
         boolean cancleRequest;
@@ -174,31 +204,30 @@ public class MovieApiClient {
         }
 
 
-
         @Override
         public void run() {
             //getting the response Objects
-            try{
+            try {
                 Response response2 = getPop(pageNumber).execute();
                 if (cancleRequest) {
                     return;
                 }
 
-                if(response2.code()==200){
-                    List<MovieModel> list = new ArrayList<>(((MovieSearchResponse)response2.body()).getMovies());
-                    if(pageNumber==1){
+                if (response2.code() == 200) {
+                    List<MovieModel> list = new ArrayList<>(((MovieSearchResponse) response2.body()).getMovies());
+                    if (pageNumber == 1) {
                         //sending data to live data
                         //postvalue: used for background thread
                         //setValue: not fkor background thread
                         mMoviesPop.postValue(list);
-                    }else {
+                    } else {
                         List<MovieModel> currentMovies = mMoviesPop.getValue();
                         currentMovies.addAll(list);
                         mMoviesPop.postValue(currentMovies);
                     }
-                }else{
+                } else {
                     String error = response2.errorBody().string();
-                    Log.v("Tag","ERROR"+ error);
+                    Log.v("Tag", "ERROR" + error);
                     mMoviesPop.postValue(null);
                 }
 
@@ -209,17 +238,71 @@ public class MovieApiClient {
             }
 
 
-
         }
 
         //search method query
-        private Call<MovieSearchResponse>  getPop(int pageNumber){
+        private Call<MovieSearchResponse> getPop(int pageNumber) {
             return Service.getMovieApi().getPopular(
                     Constants.API_KEY,
                     pageNumber
             );
 
         }
+
+        private void cancleRequest() {
+            Log.v("Tag", "cancelling Search Request");
+            cancleRequest = true;
+        }
+    }
+
+    private class RetrieveMovieById implements Runnable {
+
+        private int movie_id;
+        boolean cancleRequest;
+
+        public RetrieveMovieById(int movie_id) {
+            this.movie_id = movie_id;
+            cancleRequest = false;
+        }
+
+
+        @Override
+        public void run() {
+            //getting the response Objects
+            try {
+                Response response3 = getMovie(movie_id).execute();
+                if (cancleRequest) {
+                    return;
+                }
+
+                if (response3.code() == 200) {
+                    MovieModel movieModel = (MovieModel) response3.body();
+                    mMovieSearched.postValue(movieModel);
+
+                } else {
+                    String error = response3.errorBody().string();
+                    Log.v("Tag", "ERROR" + error);
+                    mMovieSearched.postValue(null);
+                }
+
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                mMovieSearched.postValue(null);
+            }
+
+
+        }
+
+        //search method query
+        private Call<MovieModel> getMovie(int movie_id) {
+            return Service.getMovieApi().getMovie(
+                    movie_id,
+                    Constants.API_KEY
+            );
+
+        }
+
         private void cancleRequest() {
             Log.v("Tag", "cancelling Search Request");
             cancleRequest = true;

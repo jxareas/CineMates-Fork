@@ -113,7 +113,7 @@ public class HomeFragment extends Fragment {
         List<MovieModel> sectionThreeItems = new ArrayList<>();
 
         observePopularMovies(sectionOneItems);
-        observeAnyChange(sectionOneItems);
+//        observeAnyChange(sectionOneItems);
 
         //Create sections
         mSectionList.add(new Section(sectionOneName, sectionOneItems));
