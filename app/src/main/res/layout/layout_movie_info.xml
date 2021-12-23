@@ -71,9 +71,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="50"
+                android:text="@{movie.status}"
                 android:textColor="@color/alabaster"
                 android:textSize="14sp"
-                android:text="@{movie.status}"
                 android:textStyle="bold"
                 tools:text="Status" />
         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -100,10 +100,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="50"
-                app:setRuntime="@{movie.runtime}"
                 android:textColor="@color/alabaster"
                 android:textSize="14sp"
                 android:textStyle="bold"
+                app:setRuntime="@{movie.runtime}"
                 tools:text="2 hour 32 min" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -216,9 +216,42 @@
                 android:layout_weight="50"
                 android:textColor="@color/alabaster"
                 android:textSize="14sp"
-                app:setBudget="@{movie.budget}"
                 android:textStyle="bold"
+                app:setCurrency="@{movie.budget}"
                 tools:text="100.000.000 USD" />
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal"
+            android:weightSum="100">
+
+            <TextView
+                android:id="@+id/textTitleRevenue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="50"
+                android:text="Revenue"
+                android:textColor="@color/geyser"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textRevenue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="50"
+                android:textColor="@color/alabaster"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:setCurrency="@{movie.revenue}"
+                tools:text="100.000.000 USD" />
+
+
         </androidx.appcompat.widget.LinearLayoutCompat>
 
 

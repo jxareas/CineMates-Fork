@@ -19,6 +19,7 @@
             <com.borjabravo.readmoretextview.ReadMoreTextView
                 android:id="@+id/readMoreTextV"
                 android:layout_width="match_parent"
+                android:paddingTop="10dp"
                 android:layout_height="wrap_content"
                 android:text="@{movie.overview}"
                 android:textColor="@color/alabaster"
@@ -115,10 +116,10 @@
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintEnd_toEndOf="parent" />
 
+
                 <include
                     layout="@layout/layout_movie_info"
                     app:movie="@{movie}" />
-
             </androidx.appcompat.widget.LinearLayoutCompat>
 
 

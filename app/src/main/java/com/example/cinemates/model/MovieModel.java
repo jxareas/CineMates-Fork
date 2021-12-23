@@ -35,7 +35,8 @@ public class MovieModel implements Parcelable {
     private String original_language;
     private String status;
     private int budget;
-    private List<GenreModel> genres = new ArrayList<>();
+    private int revenue;
+    private List<GenreModel> genres ;
 
 
     //for the purpose of simplicity ,i will use the release date  instead of category
@@ -44,7 +45,8 @@ public class MovieModel implements Parcelable {
 
     private MovieModel(String title, String original_title, String poster_path, String backdrop_path,
                        String release_date, int id, float vote_average, String years, int runtime,
-                       String overview, String original_language, String status, int budget, List<GenreModel> genres) {
+                       String overview, String original_language, String status, int budget, List<GenreModel> genres,
+                       int revenue) {
         this.title = title;
         this.original_title = original_title;
         this.poster_path = poster_path;
@@ -59,6 +61,7 @@ public class MovieModel implements Parcelable {
         this.status = status;
         this.budget = budget;
         this.genres = genres;
+        this.revenue = revenue;
     }
 
     protected MovieModel(Parcel in) {
@@ -75,6 +78,8 @@ public class MovieModel implements Parcelable {
         original_title = in.readString();
         budget = in.readInt();
         status = in.readString();
+        genres = new ArrayList<>();
+        revenue = in.readInt();
     }
 
     public static final Creator<MovieModel> CREATOR = new Creator<MovieModel>() {
@@ -115,6 +120,10 @@ public class MovieModel implements Parcelable {
 
     public int getBudget() {
         return budget;
+    }
+
+    public int getRevenue() {
+        return revenue;
     }
 
     public String getYears() {
@@ -168,6 +177,7 @@ public class MovieModel implements Parcelable {
         dest.writeString(status);
         dest.writeInt(budget);
         dest.writeList(genres);
+        dest.writeInt(revenue);
 
     }
 
@@ -187,9 +197,9 @@ public class MovieModel implements Parcelable {
         textView.setText(formatted_runtime);
     }
 
-    @BindingAdapter("setBudget")
-    public static void setBudget(TextView textView, float budget) {
-        textView.setText(NumberFormat.getCurrencyInstance(Locale.getDefault()).format(budget));
+    @BindingAdapter("setCurrency")
+    public static void setFormattedCurrency(TextView textView, float value) {
+        textView.setText(NumberFormat.getCurrencyInstance(Locale.getDefault()).format(value));
     }
 
     @Override

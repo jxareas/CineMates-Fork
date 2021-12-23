@@ -6,17 +6,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cinemates.DetailMediaContentActivity;
 import com.example.cinemates.databinding.ListItemMediaPosterBinding;
-import com.example.cinemates.model.Movie;
 import com.example.cinemates.model.MovieModel;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import info.movito.themoviedbapi.model.people.PersonCast;
 
 /**
  * @author Antonio Di Nuzzo

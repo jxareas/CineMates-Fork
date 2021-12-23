@@ -1,8 +1,6 @@
 package com.example.cinemates.adapter;
 
 import android.content.Intent;
-import android.content.pm.ModuleInfo;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +9,6 @@ import androidx.annotation.NonNull;
 
 import com.example.cinemates.DetailMediaContentActivity;
 import com.example.cinemates.databinding.ListItemMediaBinding;
-import com.example.cinemates.model.Movie;
 import com.example.cinemates.model.MovieModel;
 
 import java.util.ArrayList;

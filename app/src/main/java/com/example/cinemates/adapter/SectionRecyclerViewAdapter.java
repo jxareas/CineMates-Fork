@@ -1,28 +1,20 @@
 package com.example.cinemates.adapter;
 
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.cinemates.R;
-import com.example.cinemates.databinding.ListItemPersonInformationBinding;
 import com.example.cinemates.databinding.SectionRowBinding;
 import com.example.cinemates.fragment.HomeFragmentDirections;
-import com.example.cinemates.model.Movie;
 import com.example.cinemates.model.MovieModel;
 import com.example.cinemates.model.Section;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import info.movito.themoviedbapi.model.people.PersonCast;
 
 /**
  * @author Antonio Di Nuzzo
