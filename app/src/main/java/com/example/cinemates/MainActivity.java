@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView bottomNavigationView = mBinding.bottomNavigationView;
         mNavController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupWithNavController(bottomNavigationView, mNavController);
+
     }
 
 

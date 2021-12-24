@@ -13,9 +13,11 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.cinemates.adapter.CrewRecyclerViewAdapter;
 import com.example.cinemates.adapter.GenreRecyclerViewAdapter;
 import com.example.cinemates.databinding.FragmentMediaInfoBinding;
 import com.example.cinemates.databinding.LayoutBackdropCollectionBinding;
+import com.example.cinemates.model.CrewModel;
 import com.example.cinemates.model.GenreModel;
 import com.example.cinemates.model.MovieModel;
 import com.example.cinemates.viewModels.MovieListViewModel;
@@ -28,17 +30,21 @@ public class MediaInfoFragment extends Fragment {
 
     private FragmentMediaInfoBinding mBinding;
     private MovieModel mMovieModel;
+    private List<CrewModel> mCrewModel;
     private GenreRecyclerViewAdapter mGenreAdapter;
+    private CrewRecyclerViewAdapter mCrewAdapter;
 
 
-    public MediaInfoFragment(MovieModel movieModel) {
+    public MediaInfoFragment(MovieModel movieModel, List<CrewModel> crew) {
         this.mMovieModel = movieModel;
+        this.mCrewModel = new ArrayList<>(crew);
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mGenreAdapter = new GenreRecyclerViewAdapter();
+        mCrewAdapter = new CrewRecyclerViewAdapter();
     }
 
     @Override
@@ -49,8 +55,10 @@ public class MediaInfoFragment extends Fragment {
         mBinding.setMovie(mMovieModel);
 
         mGenreAdapter.addItems(mMovieModel.getGenres());
+        mCrewAdapter.addItems(mCrewModel);
         //set adapter to recycler view
         mBinding.recyclerViewGenres.setAdapter(mGenreAdapter);
+        mBinding.recyclerViewCrew.setAdapter(mCrewAdapter);
 
 
 

@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="crew"
+            type="com.example.cinemates.model.CrewModel" />
+    </data>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,17 +17,20 @@
         android:layout_height="wrap_content"
         android:textColor="@color/alabaster"
         android:textSize="14sp"
+        android:text="@{crew.name}"
         android:textStyle="bold"
-        tools:text="Ridley Scott" />
+        tools:text="@tools:sample/full_names" />
 
     <TextView
         android:id="@+id/tvSubtitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/geyser"
+        android:text="@{crew.job}"
         android:textSize="14sp"
         android:textStyle="bold"
-        tools:text="Director, Producer" />
+        tools:text="@tools:sample/full_names" />
 
 
 </LinearLayout>
+</layout>

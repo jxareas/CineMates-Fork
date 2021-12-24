@@ -1,7 +1,6 @@
 package com.example.cinemates;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,9 +10,10 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cinemates.adapter.ViewPager2Adapter;
 import com.example.cinemates.databinding.ActivityDetailMediaContentBinding;
-import com.example.cinemates.fragment.MediaCastFragment;
 import com.example.cinemates.fragment.MediaInfoFragment;
+import com.example.cinemates.model.CreditsModel;
 import com.example.cinemates.model.MovieModel;
+import com.example.cinemates.viewModels.CreditsViewModel;
 import com.example.cinemates.viewModels.MovieListViewModel;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -25,7 +25,9 @@ public class DetailMediaContentActivity extends AppCompatActivity {
     private ActivityDetailMediaContentBinding mBinding;
     private ViewPager2Adapter mAdapter;
     private MovieModel mMovieModel;
-    private MovieListViewModel mViewModel;
+    private MovieListViewModel mMovieViewModel;
+    private CreditsModel mCreditsModel;
+    private CreditsViewModel mCreditsViewModel;
 
 
     @Override
@@ -37,9 +39,11 @@ public class DetailMediaContentActivity extends AppCompatActivity {
 
         getDataFromIntent();
 
-        mViewModel = new ViewModelProvider(this).get(MovieListViewModel.class);
+        mMovieViewModel = new ViewModelProvider(this).get(MovieListViewModel.class);
+        mCreditsViewModel = new ViewModelProvider(this).get(CreditsViewModel.class);
 
-        mViewModel.searchMovieById(mMovieModel.getId());
+        mMovieViewModel.searchMovieById(mMovieModel.getId());
+        mCreditsViewModel.searchCreditsByMovieId(mMovieModel.getId());
 
         observeAnyChange();
 
@@ -53,7 +57,7 @@ public class DetailMediaContentActivity extends AppCompatActivity {
     private void setupViewPager2() {
         mAdapter = new ViewPager2Adapter(this);
         ArrayList<Fragment> fragments = new ArrayList<>();//creates an ArrayList of Fragments
-        fragments.add(new MediaInfoFragment(mMovieModel));// TODO maybe passing an observer
+        fragments.add(new MediaInfoFragment(mMovieModel, mCreditsModel.getCrew()));// TODO maybe passing an observer
 //        fragments.add(new MediaCastFragment(mMovieModel));
         mAdapter.setData(fragments);// sets the data for the adapter
         mBinding.viewPager.setAdapter(mAdapter);
@@ -82,18 +86,28 @@ public class DetailMediaContentActivity extends AppCompatActivity {
     //Observing any data change
     private void observeAnyChange() {
 
-        mViewModel.getMovieSearchedById().observe(this, new Observer<MovieModel>() {
+        mMovieViewModel.getMovieSearchedById().observe(this, new Observer<MovieModel>() {
             @Override
             public void onChanged(MovieModel movieModel) {
                 //observing for any data changes
                 if (movieModel != null) {
                     mMovieModel = movieModel;
                     mBinding.setMovie(movieModel);
+
+
+                }
+            }
+        });
+
+        mCreditsViewModel.getCredits().observe(this, new Observer<CreditsModel>() {
+            @Override
+            public void onChanged(CreditsModel creditsModel) {
+                if(creditsModel != null){
+                    mCreditsModel = creditsModel;
                     //Viene effettuata una seconda chiamata al metodo
                     //in quanto questo metodo è asincrono, quindi con la prima chiamata
                     //il nuovo film aggiornato non viene inviato ai fragemnt in questione
                     setupViewPager2();
-
                 }
             }
         });

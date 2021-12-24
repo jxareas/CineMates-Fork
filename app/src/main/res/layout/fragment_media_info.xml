@@ -64,10 +64,13 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <GridView
-                android:id="@+id/listCrew"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewCrew"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="2"
+                tools:listitem="@layout/list_item_crew" />
 
             <TextView
                 android:id="@+id/textTitleInfo"

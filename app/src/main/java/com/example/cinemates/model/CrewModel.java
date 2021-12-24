@@ -73,6 +73,42 @@ public class CrewModel implements Parcelable {
         parcel.writeString(job);
     }
 
+    public int getGender() {
+        return gender;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getKnown_for_department() {
+        return known_for_department;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getOriginal_name() {
+        return original_name;
+    }
+
+    public String getProfile_path() {
+        return profile_path;
+    }
+
+    public String getCredit_id() {
+        return credit_id;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public String getJob() {
+        return job;
+    }
+
     @Override
     public String toString() {
         return "CrewModel{" +

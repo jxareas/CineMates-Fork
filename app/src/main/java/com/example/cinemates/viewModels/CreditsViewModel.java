@@ -21,7 +21,7 @@ public class CreditsViewModel extends ViewModel {
     }
 
 
-    public void searchMovieById(int movie_id) {
+    public void searchCreditsByMovieId(int movie_id) {
         mCreditsRepository.searchCreditsByMovieId(movie_id);
     }
 
