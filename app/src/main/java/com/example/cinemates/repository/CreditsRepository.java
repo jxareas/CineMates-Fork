@@ -2,12 +2,8 @@ package com.example.cinemates.repository;
 
 import androidx.lifecycle.LiveData;
 
-import com.example.cinemates.model.CreditsModel;
-import com.example.cinemates.model.MovieModel;
+import com.example.cinemates.model.api.CreditsModel;
 import com.example.cinemates.request.CreditsApiClient;
-import com.example.cinemates.request.MovieApiClient;
-
-import java.util.List;
 
 public class CreditsRepository {
 

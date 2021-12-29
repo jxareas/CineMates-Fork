@@ -1,23 +1,16 @@
 package com.example.cinemates.fragment;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cinemates.adapter.ActorRecyclerViewAdapter;
 import com.example.cinemates.databinding.FragmentMediaCastBinding;
-import com.example.cinemates.model.CastModel;
-import com.example.cinemates.model.CreditsModel;
-import com.example.cinemates.model.MovieModel;
-import com.example.cinemates.viewModels.CreditsViewModel;
+import com.example.cinemates.model.api.CastModel;
 
 import java.util.ArrayList;
 import java.util.List;

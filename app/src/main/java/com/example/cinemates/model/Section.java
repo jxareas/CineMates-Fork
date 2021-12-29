@@ -1,5 +1,7 @@
 package com.example.cinemates.model;
 
+import com.example.cinemates.model.api.MovieModel;
+
 import java.util.List;
 
 /**

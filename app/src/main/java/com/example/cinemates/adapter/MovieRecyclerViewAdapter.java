@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 
 import com.example.cinemates.DetailMediaContentActivity;
 import com.example.cinemates.databinding.ListItemMediaBinding;
-import com.example.cinemates.model.MovieModel;
+import com.example.cinemates.model.api.MovieModel;
 
 import java.util.ArrayList;
 import java.util.List;

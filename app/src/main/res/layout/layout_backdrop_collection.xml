@@ -7,7 +7,7 @@
 
         <variable
             name="collection"
-            type="com.example.cinemates.model.CollectionModel" />
+            type="com.example.cinemates.model.api.CollectionModel" />
 
     </data>
 

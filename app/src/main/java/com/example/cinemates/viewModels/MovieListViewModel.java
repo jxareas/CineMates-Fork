@@ -4,7 +4,7 @@ package com.example.cinemates.viewModels;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.cinemates.model.MovieModel;
+import com.example.cinemates.model.api.MovieModel;
 import com.example.cinemates.repository.MovieRepository;
 
 import java.util.List;

@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.cinemates.AppExecutors;
-import com.example.cinemates.model.MovieModel;
+import com.example.cinemates.model.api.MovieModel;
 import com.example.cinemates.response.MovieSearchResponse;
 import com.example.cinemates.util.Constants;
 

@@ -6,12 +6,10 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 
 import com.example.cinemates.databinding.ListItemPersonInformationBinding;
-import com.example.cinemates.model.CastModel;
+import com.example.cinemates.model.api.CastModel;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import info.movito.themoviedbapi.model.people.PersonCast;
 
 /**
  * @author Antonio Di Nuzzo

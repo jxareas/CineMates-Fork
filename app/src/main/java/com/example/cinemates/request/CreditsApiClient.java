@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.cinemates.AppExecutors;
-import com.example.cinemates.model.CreditsModel;
+import com.example.cinemates.model.api.CreditsModel;
 import com.example.cinemates.util.Constants;
 
 import java.io.IOException;

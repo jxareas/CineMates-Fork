@@ -2,7 +2,7 @@ package com.example.cinemates.repository;
 
 import androidx.lifecycle.LiveData;
 
-import com.example.cinemates.model.MovieModel;
+import com.example.cinemates.model.api.MovieModel;
 import com.example.cinemates.request.MovieApiClient;
 
 import java.util.List;

@@ -3,7 +3,7 @@
     <data>
         <variable
             name="genre"
-            type="com.example.cinemates.model.GenreModel" />
+            type="com.example.cinemates.model.api.GenreModel" />
     </data>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"

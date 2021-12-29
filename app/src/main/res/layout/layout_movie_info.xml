@@ -8,7 +8,7 @@
 
         <variable
             name="movie"
-            type="com.example.cinemates.model.MovieModel" />
+            type="com.example.cinemates.model.api.MovieModel" />
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat

@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cinemates.databinding.ItemChipTextBinding;
-import com.example.cinemates.model.GenreModel;
+import com.example.cinemates.model.api.GenreModel;
 
 import java.util.ArrayList;
 import java.util.List;

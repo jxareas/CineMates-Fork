@@ -8,10 +8,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.cinemates.databinding.ItemChipTextBinding;
 import com.example.cinemates.databinding.ListItemCrewBinding;
-import com.example.cinemates.model.CrewModel;
-import com.example.cinemates.model.GenreModel;
+import com.example.cinemates.model.api.CrewModel;
 
 import java.util.ArrayList;
 import java.util.List;

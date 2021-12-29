@@ -1,6 +1,6 @@
 package com.example.cinemates.response;
 
-import com.example.cinemates.model.MovieModel;
+import com.example.cinemates.model.api.MovieModel;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

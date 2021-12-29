@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cinemates.databinding.SectionRowBinding;
 import com.example.cinemates.fragment.HomeFragmentDirections;
-import com.example.cinemates.model.MovieModel;
+import com.example.cinemates.model.api.MovieModel;
 import com.example.cinemates.model.Section;
 
 import java.util.ArrayList;

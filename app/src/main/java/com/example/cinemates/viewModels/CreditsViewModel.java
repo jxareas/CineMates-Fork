@@ -4,7 +4,7 @@ package com.example.cinemates.viewModels;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.cinemates.model.CreditsModel;
+import com.example.cinemates.model.api.CreditsModel;
 import com.example.cinemates.repository.CreditsRepository;
 
 public class CreditsViewModel extends ViewModel {
