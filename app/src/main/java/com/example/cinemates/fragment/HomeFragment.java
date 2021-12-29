@@ -103,9 +103,9 @@ public class HomeFragment extends Fragment {
 
     private void initDataIntoMovieSections() {
         //Title of sections
-        final String sectionOneName = "Popolari";
-        final String sectionTwoName = "Al Cinema";
-        final String sectionThreeName = "In Arrivo";
+        String sectionOneName = "Popolari";
+        String sectionTwoName = "Al Cinema";
+        String sectionThreeName = "In Arrivo";
 
         //Section list of Items
         List<MovieModel> sectionOneItems = new ArrayList<>();
@@ -132,13 +132,20 @@ public class HomeFragment extends Fragment {
             public void onChanged(List<MovieModel> movieModels) {
                 //observing for any data change
                 if (movieModels != null) {
-                    popularMovies.addAll(movieModels);
+                    for (MovieModel model : movieModels) {
+                        //get the data in the log
+                        Log.d(TAG, "onChanged: " + model.getTitle());
+
+                        popularMovies.addAll(movieModels);
+
+                    }
                 }
 
             }
         });
 
     }
+
 
 
     @Override

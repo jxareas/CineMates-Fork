@@ -10,7 +10,6 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cinemates.adapter.ViewPager2Adapter;
 import com.example.cinemates.databinding.ActivityDetailMediaContentBinding;
-import com.example.cinemates.fragment.MediaCastFragment;
 import com.example.cinemates.fragment.MediaInfoFragment;
 import com.example.cinemates.model.api.CreditsModel;
 import com.example.cinemates.model.api.MovieModel;
@@ -58,8 +57,8 @@ public class DetailMediaContentActivity extends AppCompatActivity {
     private void setupViewPager2() {
         mAdapter = new ViewPager2Adapter(this);
         ArrayList<Fragment> fragments = new ArrayList<>();//creates an ArrayList of Fragments
-        fragments.add(new MediaInfoFragment(mMovieModel, new ArrayList<>()));// TODO maybe passing an observer
-        fragments.add(new MediaCastFragment(mCreditsModel.getCast()));
+        fragments.add(new MediaInfoFragment(mMovieModel, mCreditsModel.getCrew()));// TODO maybe passing an observer
+//        fragments.add(new MediaCastFragment(mMovieModel));
         mAdapter.setData(fragments);// sets the data for the adapter
         mBinding.viewPager.setAdapter(mAdapter);
     }
