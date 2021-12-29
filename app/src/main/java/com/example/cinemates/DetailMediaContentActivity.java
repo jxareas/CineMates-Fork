@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.fragment.FragmentNavigatorExtrasKt;
 
 import com.example.cinemates.adapter.ViewPager2Adapter;
 import com.example.cinemates.databinding.ActivityDetailMediaContentBinding;
@@ -19,6 +20,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class DetailMediaContentActivity extends AppCompatActivity {
 
@@ -28,6 +30,7 @@ public class DetailMediaContentActivity extends AppCompatActivity {
     private MovieListViewModel mMovieViewModel;
     private CreditsModel mCreditsModel;
     private CreditsViewModel mCreditsViewModel;
+    private List<Fragment> mFragments;
 
 
     @Override
@@ -41,6 +44,9 @@ public class DetailMediaContentActivity extends AppCompatActivity {
 
         mMovieViewModel = new ViewModelProvider(this).get(MovieListViewModel.class);
         mCreditsViewModel = new ViewModelProvider(this).get(CreditsViewModel.class);
+        mAdapter = new ViewPager2Adapter(this);
+        mFragments = new ArrayList<>();
+
 
         mMovieViewModel.searchMovieById(mMovieModel.getId());
         mCreditsViewModel.searchCreditsByMovieId(mMovieModel.getId());
@@ -55,11 +61,9 @@ public class DetailMediaContentActivity extends AppCompatActivity {
     }
 
     private void setupViewPager2() {
-        mAdapter = new ViewPager2Adapter(this);
-        ArrayList<Fragment> fragments = new ArrayList<>();//creates an ArrayList of Fragments
-        fragments.add(new MediaInfoFragment(mMovieModel, mCreditsModel.getCrew()));// TODO maybe passing an observer
+        mFragments.add(new MediaInfoFragment(mMovieModel, mCreditsModel.getCrew()));
 //        fragments.add(new MediaCastFragment(mMovieModel));
-        mAdapter.setData(fragments);// sets the data for the adapter
+        mAdapter.setData(mFragments);// sets the data for the adapter
         mBinding.viewPager.setAdapter(mAdapter);
     }
 
