@@ -1,4 +1,4 @@
-package com.example.cinemates.model;
+package com.example.cinemates.model.api;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -7,10 +7,10 @@ import android.os.Parcelable;
  * @author Antonio Di Nuzzo
  * Created 23/12/2021 at 11:20
  */
-public class ProductionCountriesModel implements Parcelable {
+public class ProductionCompaniesModel implements Parcelable {
     private String name;
 
-    private ProductionCountriesModel( String name) {
+    private ProductionCompaniesModel(String name) {
         this.name = name;
     }
 
@@ -19,19 +19,19 @@ public class ProductionCountriesModel implements Parcelable {
         return name;
     }
 
-    protected ProductionCountriesModel(Parcel in) {
+    protected ProductionCompaniesModel(Parcel in) {
         name = in.readString();
     }
 
-    public static final Creator<ProductionCountriesModel> CREATOR = new Creator<ProductionCountriesModel>() {
+    public static final Creator<ProductionCompaniesModel> CREATOR = new Creator<ProductionCompaniesModel>() {
         @Override
-        public ProductionCountriesModel createFromParcel(Parcel in) {
-            return new ProductionCountriesModel(in);
+        public ProductionCompaniesModel createFromParcel(Parcel in) {
+            return new ProductionCompaniesModel(in);
         }
 
         @Override
-        public ProductionCountriesModel[] newArray(int size) {
-            return new ProductionCountriesModel[size];
+        public ProductionCompaniesModel[] newArray(int size) {
+            return new ProductionCompaniesModel[size];
         }
     };
 
@@ -47,7 +47,7 @@ public class ProductionCountriesModel implements Parcelable {
 
     @Override
     public String toString() {
-        return "ProductionCountriesModel{" +
+        return "ProductionCompaniesModel{" +
                 "name='" + name + '\'' +
                 '}';
     }

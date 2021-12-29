@@ -1,7 +1,6 @@
 package com.example.cinemates.fragment;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,17 +9,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cinemates.adapter.CrewRecyclerViewAdapter;
 import com.example.cinemates.adapter.GenreRecyclerViewAdapter;
 import com.example.cinemates.databinding.FragmentMediaInfoBinding;
-import com.example.cinemates.databinding.LayoutBackdropCollectionBinding;
-import com.example.cinemates.model.CrewModel;
-import com.example.cinemates.model.GenreModel;
-import com.example.cinemates.model.MovieModel;
-import com.example.cinemates.viewModels.MovieListViewModel;
+import com.example.cinemates.model.api.CrewModel;
+import com.example.cinemates.model.api.MovieModel;
 
 import java.util.ArrayList;
 import java.util.List;

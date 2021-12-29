@@ -1,7 +1,6 @@
 package com.example.cinemates.fragment;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.cinemates.R;
 import com.example.cinemates.adapter.SectionRecyclerViewAdapter;
 import com.example.cinemates.databinding.FragmentHomeBinding;
-import com.example.cinemates.model.MovieModel;
+import com.example.cinemates.model.api.MovieModel;
 import com.example.cinemates.model.Section;
 import com.example.cinemates.viewModels.MovieListViewModel;
 
@@ -38,6 +37,7 @@ public class HomeFragment extends Fragment {
     private SectionRecyclerViewAdapter mSectionRecyclerViewAdapter;
     private MovieListViewModel mViewModel;
     private static final String TAG = HomeFragment.class.getSimpleName();
+
 
 
     @Override

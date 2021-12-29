@@ -1,4 +1,4 @@
-package com.example.cinemates.model;
+package com.example.cinemates.model.api;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -10,15 +10,11 @@ import androidx.databinding.BindingAdapter;
 import com.bumptech.glide.Glide;
 import com.example.cinemates.R;
 import com.example.cinemates.util.Constants;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-
-import info.movito.themoviedbapi.model.Genre;
 
 public class MovieModel implements Parcelable {
     //model class for our movies

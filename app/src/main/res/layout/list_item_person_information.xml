@@ -6,7 +6,7 @@
 
         <variable
             name="cast"
-            type="com.example.cinemates.model.CastModel" />
+            type="com.example.cinemates.model.api.CastModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"

@@ -1,4 +1,4 @@
-package com.example.cinemates.model;
+package com.example.cinemates.model.api;
 
 import android.os.Parcel;
 import android.os.Parcelable;

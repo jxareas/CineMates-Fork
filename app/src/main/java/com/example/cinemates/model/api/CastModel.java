@@ -1,11 +1,9 @@
-package com.example.cinemates.model;
+package com.example.cinemates.model.api;
 
-import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.widget.ImageView;
 
-import androidx.annotation.RequiresApi;
 import androidx.databinding.BindingAdapter;
 
 import com.bumptech.glide.Glide;

@@ -1,4 +1,4 @@
-package com.example.cinemates.model;
+package com.example.cinemates.model.api;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -11,7 +11,6 @@ import com.bumptech.glide.Glide;
 import com.example.cinemates.R;
 import com.example.cinemates.util.Constants;
 
-import java.text.CollationKey;
 import java.util.ArrayList;
 import java.util.List;
 
