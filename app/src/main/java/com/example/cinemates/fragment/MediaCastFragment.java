@@ -30,16 +30,14 @@ public class MediaCastFragment extends Fragment {
     private List<CastModel> mCastModels ;
 
 
-    public MediaCastFragment(CreditsModel creditsModel) {
-        this.mCastModels = new ArrayList<>(creditsModel.getCast());
+    public MediaCastFragment(List<CastModel> castModel) {
+        this.mCastModels = new ArrayList<>(castModel);
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         mAdapter = new ActorRecyclerViewAdapter();
-        mAdapter.addItems(mCastModels);
 
     }
 
@@ -49,6 +47,7 @@ public class MediaCastFragment extends Fragment {
         // Inflate the layout for this fragment
         mBinding = FragmentMediaCastBinding.inflate(inflater, container, false);
         mBinding.recyclerView.setAdapter(mAdapter);
+        mAdapter.addItems(mCastModels);
 
 
         return mBinding.getRoot();
