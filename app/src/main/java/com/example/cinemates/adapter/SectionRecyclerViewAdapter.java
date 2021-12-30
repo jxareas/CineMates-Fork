@@ -21,8 +21,12 @@ import java.util.List;
  * Created 15/12/2021 at 16:36
  */
 public class SectionRecyclerViewAdapter extends RecyclerView.Adapter<SectionRecyclerViewAdapter.SectionViewHolder> {
-    private final List<Section> dataList = new ArrayList<>();
+    private  List<Section> dataList ;
     private static final String TAG = SectionItemsRecyclerViewAdapter.class.getSimpleName();
+
+    public SectionRecyclerViewAdapter(List<Section> dataList) {
+        this.dataList = dataList;
+    }
 
     @NonNull
     @Override

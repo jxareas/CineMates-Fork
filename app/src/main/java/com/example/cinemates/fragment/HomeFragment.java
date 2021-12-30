@@ -34,7 +34,7 @@ public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding mBinding;
     private NavController mNavController;
-    private final List<Section> mSectionList = new ArrayList<>();
+    private  List<Section> mSectionList ;
     private SectionRecyclerViewAdapter mSectionRecyclerViewAdapter;
     private MovieListViewModel mViewModel;
     private static final String TAG = HomeFragment.class.getSimpleName();
@@ -45,7 +45,8 @@ public class HomeFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mSectionRecyclerViewAdapter = new SectionRecyclerViewAdapter();
+        mSectionList = new ArrayList<>();
+        mSectionRecyclerViewAdapter = new SectionRecyclerViewAdapter(mSectionList);
         mViewModel = new ViewModelProvider(this).get(MovieListViewModel.class);
 
         //Getting Popular
@@ -113,15 +114,15 @@ public class HomeFragment extends Fragment {
         List<MovieModel> sectionTwoItems = new ArrayList<>();
         List<MovieModel> sectionThreeItems = new ArrayList<>();
 
-        observePopularMovies(sectionOneItems);
 
         //Create sections
         mSectionList.add(new Section(sectionOneName, sectionOneItems));
         mSectionList.add(new Section(sectionTwoName, sectionTwoItems));
         mSectionList.add(new Section(sectionThreeName, sectionThreeItems));
 
+        observePopularMovies(sectionOneItems);
         //Add section list into recycler view
-        mSectionRecyclerViewAdapter.addItems(mSectionList);
+//        mSectionRecyclerViewAdapter.addItems(mSectionList);
 
 
     }
@@ -134,6 +135,7 @@ public class HomeFragment extends Fragment {
                 //observing for any data change
                 if (movieModels != null) {
                         popularMovies.addAll(movieModels);
+                        mSectionRecyclerViewAdapter.notifyDataSetChanged();
 
                     }
                 }

@@ -45,7 +45,7 @@ public class DetailedViewFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mRecyclerViewAdapter = new MovieRecyclerViewAdapter();
+//        mRecyclerViewAdapter = new MovieRecyclerViewAdapter();
         mLinearLayoutManager = new LinearLayoutManager(getContext());
         mGridLayoutManager = new GridLayoutManager(getContext(), 3);
 

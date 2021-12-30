@@ -22,7 +22,7 @@ public class SearchMovieFragment extends Fragment implements ChangeRvLayout {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mRecyclerViewAdapter = new MovieRecyclerViewAdapter();
+//        mRecyclerViewAdapter = new MovieRecyclerViewAdapter();
 
 
 

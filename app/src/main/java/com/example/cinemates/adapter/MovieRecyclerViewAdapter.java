@@ -19,13 +19,20 @@ import java.util.List;
  * Created 15/12/2021 at 16:36
  */
 public class MovieRecyclerViewAdapter extends EmptyRecyclerView.Adapter<MovieRecyclerViewAdapter.MovieViewHolder> {
-    private final List<MovieModel> dataList = new ArrayList<>();
+    private List<MovieModel> dataList ;
+    private LayoutInflater mLayoutInflater;
+
+    private MovieRecyclerViewAdapter(List<MovieModel> dataList) {
+        this.dataList = dataList;
+    }
 
     @NonNull
     @Override
     public MovieViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        ListItemMediaBinding mediaBinding = ListItemMediaBinding.inflate(layoutInflater, parent, false);
+        if (mLayoutInflater == null){
+            mLayoutInflater = LayoutInflater.from(parent.getContext());
+        }
+        ListItemMediaBinding mediaBinding = ListItemMediaBinding.inflate(mLayoutInflater, parent, false);
         return new MovieViewHolder(mediaBinding);
     }
 
