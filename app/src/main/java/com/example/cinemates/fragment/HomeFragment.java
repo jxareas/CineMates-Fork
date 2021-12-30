@@ -1,6 +1,7 @@
 package com.example.cinemates.fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -132,16 +133,12 @@ public class HomeFragment extends Fragment {
             public void onChanged(List<MovieModel> movieModels) {
                 //observing for any data change
                 if (movieModels != null) {
-                    for (MovieModel model : movieModels) {
-                        //get the data in the log
-                        Log.d(TAG, "onChanged: " + model.getTitle());
-
                         popularMovies.addAll(movieModels);
 
                     }
                 }
 
-            }
+            
         });
 
     }

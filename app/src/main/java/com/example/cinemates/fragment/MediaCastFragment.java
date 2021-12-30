@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import com.example.cinemates.adapter.ActorRecyclerViewAdapter;
 import com.example.cinemates.databinding.FragmentMediaCastBinding;
 import com.example.cinemates.model.api.CastModel;
+import com.example.cinemates.model.api.CreditsModel;
 
 import java.util.ArrayList;
 import java.util.List;
