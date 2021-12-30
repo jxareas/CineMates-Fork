@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,12 +19,16 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     private List<Fragment> mFragments;//variable holds the fragments the ViewPager2 allows us to swipe to.
     private List<String> mStringList;//variable holds the fragments the ViewPager2 allows us to swipe to.
 
-    public ViewPagerAdapter(@NonNull FragmentManager fm, List<Fragment> fragmentList, List<String> fragmentTitles) {
+    public ViewPagerAdapter(@NonNull FragmentManager fm) {
         super(fm);
-        this.mFragments = fragmentList;
-        this.mStringList = fragmentTitles;
+        this.mFragments = new ArrayList<>();
+        this.mStringList = new ArrayList<>();
     }
 
+    public void addFragment(Fragment fragment, String title){
+        mFragments.add(fragment);
+        mStringList.add(title);
+    }
     @NonNull
     @Override
     public Fragment getItem(int position) {

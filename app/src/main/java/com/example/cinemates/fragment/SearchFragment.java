@@ -147,7 +147,7 @@ public class SearchFragment extends Fragment {
         ArrayList<Fragment> fragments = new ArrayList<>();//creates an ArrayList of Fragments
         fragments.add(new SearchMovieFragment());
         fragments.add(new SearchActorFragment());
-        mAdapter = new ViewPagerAdapter(getParentFragmentManager(), fragments, Arrays.asList("Actor", "Movies"));
+        mAdapter = new ViewPagerAdapter(getParentFragmentManager());
         mBinding.viewPager.setAdapter(mAdapter);
     }
 

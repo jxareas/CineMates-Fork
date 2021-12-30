@@ -17,6 +17,7 @@
         android:id="@+id/backdropCollection"
         android:layout_width="match_parent"
         android:layout_height="199dp"
+        android:layout_marginBottom="?attr/actionBarSize"
         android:layout_marginEnd="20dp"
         android:visibility="@{collection == null ? View.GONE : View.VISIBLE, default=visible}"
         app:cardBackgroundColor="@color/lynch_100"

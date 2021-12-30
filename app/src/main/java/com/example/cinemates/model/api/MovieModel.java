@@ -86,7 +86,7 @@ public class MovieModel implements Parcelable {
         production_countries = new ArrayList<>();
         production_companies = new ArrayList<>();
         revenue = in.readInt();
-            belongs_to_collection = in.readParcelable(CollectionModel.class.getClassLoader());
+//            belongs_to_collection = in.readParcelable(CollectionModel.class.getClassLoader());
 
     }
 
@@ -200,48 +200,11 @@ public class MovieModel implements Parcelable {
         dest.writeList(production_countries);
         dest.writeList(production_companies);
         dest.writeInt(revenue);
-        dest.writeParcelable(belongs_to_collection, i);
+//        dest.writeParcelable(belongs_to_collection, i);
 
     }
 
-  /*  @BindingAdapter("loadImage")
-    public static void loadImage(ImageView imageView, String posterPath) {
-        Glide.with(imageView)
-                .load(Constants.POSTER_URL + posterPath)
-                .placeholder(R.drawable.ic_baseline_image_not_supported_24)
-                .into(imageView);
-    }*/
 
-   /* @BindingAdapter("setRuntime")
-    public static void setRuntime(TextView textView, int runtime) {
-        int hours = runtime / 60; //since both are ints, you get an int
-        int minutes = runtime % 60;
-        String formatted_runtime = hours + " hours " + minutes + " min";
-        textView.setText(formatted_runtime);
-    }*/
-
-   /* @BindingAdapter("setCurrency")
-    public static void setFormattedCurrency(TextView textView, float value) {
-        textView.setText(NumberFormat.getCurrencyInstance(Locale.getDefault()).format(value));
-    }*/
-
-  /*  @BindingAdapter("setProductionCountries")
-    public static void setProductionCountries(TextView textView, List<ProductionCountriesModel> list) {
-        String value = "";
-        for (ProductionCountriesModel pc : list) {
-            value += pc.getName() + "\n";
-        }
-        textView.setText(value);
-    }*/
-
-  /*  @BindingAdapter("setProductionCompanies")
-    public static void setProductionCompanies(TextView textView, List<ProductionCompaniesModel> list) {
-        String value = "";
-        for (ProductionCompaniesModel pc : list) {
-            value += pc.getName() + "\n";
-        }
-        textView.setText(value);
-    }*/
 
     @Override
     public String toString() {
@@ -262,7 +225,7 @@ public class MovieModel implements Parcelable {
                 ", revenue=" + revenue +
                 ", genres=" + genres +
                 ", production_countries=" + production_countries +
-                ", belongs_to_collection=" + belongs_to_collection +
+//                ", belongs_to_collection=" + belongs_to_collection +
                 '}';
     }
 }

@@ -2,6 +2,7 @@ package com.example.cinemates;
 
 import android.database.DataSetObserver;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,7 +36,6 @@ public class DetailMediaContentActivity extends AppCompatActivity {
     private MovieModel mMovieModel;
     private MovieListViewModel mMovieViewModel;
     private CreditsViewModel mCreditsViewModel;
-    private List<Fragment> mFragments;
     private List<CrewModel> mCrewModelList;
     private List<CastModel> mCastModelList;
 
@@ -48,7 +48,6 @@ public class DetailMediaContentActivity extends AppCompatActivity {
 
         getDataFromIntent();
 
-        mFragments = new ArrayList<>();//list of fragment for viewpager
         mCrewModelList = new ArrayList<>();
         mCastModelList = new ArrayList<>();
         mMovieViewModel = new ViewModelProvider(this).get(MovieListViewModel.class);
@@ -57,13 +56,10 @@ public class DetailMediaContentActivity extends AppCompatActivity {
         mMovieViewModel.searchMovieById(mMovieModel.getId());
         mCreditsViewModel.searchCreditsByMovieId(mMovieModel.getId());
 
-
         observeAnyChange();
 
-        /*mFragments.add(new MediaInfoFragment(mMovieModel, mCrewModelList));
-        mFragments.add(new MediaCastFragment(mCastModelList));*/
         //Adding fragment and their titles to viewpager adapter
-        mAdapter = new ViewPagerAdapter(getSupportFragmentManager(), mFragments, Arrays.asList("Info", "Cast"));
+        mAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         mBinding.viewPager.setAdapter(mAdapter);
         mBinding.tabLayout.setupWithViewPager(mBinding.viewPager, true);
 
@@ -81,32 +77,45 @@ public class DetailMediaContentActivity extends AppCompatActivity {
 
     //Observing any data change
     private void observeAnyChange() {
-        mMovieViewModel.getMovieSearchedById().observe(this, new Observer<MovieModel>() {
-            @Override
-            public void onChanged(MovieModel movieModel) {
-                //observing for any data changes
-                if (movieModel != null) {
-                    mMovieModel = movieModel;
-                    mBinding.setMovie(mMovieModel);
-                }
-            }
-        });
+        mMovieViewModel.getMovieSearchedById().observe(this, mMovieModelObserver);
 
-        mCreditsViewModel.getCredits().observe(this, new Observer<CreditsModel>() {
-            @Override
-            public void onChanged(CreditsModel creditsModel) {
-                if (creditsModel != null) {
-                    mCastModelList.addAll(creditsModel.getCast());
-                    mCrewModelList.addAll(creditsModel.getCrew());
-                    mFragments.add(new MediaInfoFragment(mMovieModel, mCrewModelList));
-                    mFragments.add(new MediaCastFragment(mCastModelList));
-                    mAdapter.notifyDataSetChanged();
-                }
-            }
-        });
+        mCreditsViewModel.getCredits().observe(this, mCreditsModelObserver);
+
 
     }
 
+    private final Observer<MovieModel> mMovieModelObserver = new Observer<MovieModel>() {
+        @Override
+        public void onChanged(MovieModel movieModel) {
+            //observing for any data changes
+            if (movieModel != null) {
+                mMovieModel = movieModel;
+                mBinding.setMovie(mMovieModel);
+                mAdapter.notifyDataSetChanged();
 
+            }
+        }
+    };
 
+    private final Observer<CreditsModel> mCreditsModelObserver = new Observer<CreditsModel>() {
+        @Override
+        public void onChanged(CreditsModel creditsModel) {
+            if (creditsModel != null) {
+                mCastModelList.addAll(creditsModel.getCast());
+                mCrewModelList.addAll(creditsModel.getCrew());
+
+                mAdapter.addFragment(new MediaInfoFragment(mMovieModel, mCrewModelList), "Info");
+                mAdapter.addFragment(new MediaCastFragment(mCastModelList), "Cast");
+                mAdapter.notifyDataSetChanged();
+            }
+        }
+    };
+
+    @Override
+    protected void onDestroy() {
+        mMovieViewModel.getMovieSearchedById().removeObserver(mMovieModelObserver);
+        mCreditsViewModel.getCredits().removeObserver(mCreditsModelObserver);
+
+        super.onDestroy();
+    }
 }

@@ -129,7 +129,7 @@ public class StandardListsFragment extends Fragment {
         ArrayList<Fragment> fragments = new ArrayList<>();//creates an ArrayList of Fragments
         fragments.add(new SearchMovieFragment());
         fragments.add(new SearchActorFragment());
-        mAdapter = new ViewPagerAdapter(getParentFragmentManager(), fragments, Arrays.asList("Movie", "Actor"));
+        mAdapter = new ViewPagerAdapter(getParentFragmentManager());
         mBinding.viewPager.setAdapter(mAdapter);
     }
 
