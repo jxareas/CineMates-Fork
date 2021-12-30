@@ -16,7 +16,9 @@ public interface MovieApi {
     Call<MovieSearchResponse> searchMovie(
             @Query("api_key") String api_key,
             @Query("query") String query,
-            @Query("page") int page
+            @Query("page") int page,
+            @Query("language") String language
+
     );
 
     //Get popular Movie
@@ -25,7 +27,9 @@ public interface MovieApi {
     @GET("/3/movie/popular")
     Call<MovieSearchResponse> getPopular(
             @Query("api_key") String key,
-            @Query("page") int page
+            @Query("page") int page,
+            @Query("language") String language
+
     );
 
 
@@ -34,14 +38,18 @@ public interface MovieApi {
     @GET("3/movie/{movie_id}?")
     Call<MovieModel> getMovie(
             @Path("movie_id") int movie_id,
-            @Query("api_key") String api_key
+            @Query("api_key") String api_key,
+            @Query("language") String language
+
     );
 
     // https://api.themoviedb.org/3/movie/{movie_id}/credits?api_key=<<api_key>>&language=en-US
     @GET("3/movie/{movie_id}/credits?")
     Call<CreditsModel> getCredits(
             @Path("movie_id") int movie_id,
-            @Query("api_key") String api_key
+            @Query("api_key") String api_key,
+            @Query("language") String language
+
     );
 
 

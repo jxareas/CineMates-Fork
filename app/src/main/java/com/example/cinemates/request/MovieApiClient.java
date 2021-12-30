@@ -182,7 +182,8 @@ public class MovieApiClient {
             return Service.getMovieApi().searchMovie(
                     Constants.API_KEY,
                     query,
-                    pageNumber
+                    pageNumber,
+                    Constants.DEFAULT_SYSTEM_LANGUAGE
             );
 
         }
@@ -245,7 +246,8 @@ public class MovieApiClient {
         private Call<MovieSearchResponse> getPop(int pageNumber) {
             return Service.getMovieApi().getPopular(
                     Constants.API_KEY,
-                    pageNumber
+                    pageNumber,
+                    Constants.DEFAULT_SYSTEM_LANGUAGE
             );
 
         }
@@ -299,7 +301,8 @@ public class MovieApiClient {
         private Call<MovieModel> getMovie(int movie_id) {
             return Service.getMovieApi().getMovie(
                     movie_id,
-                    Constants.API_KEY
+                    Constants.API_KEY,
+                    Constants.DEFAULT_SYSTEM_LANGUAGE
             );
 
         }

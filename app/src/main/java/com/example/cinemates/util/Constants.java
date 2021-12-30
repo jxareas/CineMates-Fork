@@ -12,7 +12,4 @@ public class Constants {
     public static final String API_KEY = BuildConfig.API_KEY;
     public static final String DEFAULT_SYSTEM_LANGUAGE = getDefault().getLanguage();
 
-    public static boolean POPULAR = true;
-
-
 }

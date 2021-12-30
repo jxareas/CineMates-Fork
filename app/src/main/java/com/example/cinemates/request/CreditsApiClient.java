@@ -110,7 +110,8 @@ public class CreditsApiClient {
         private Call<CreditsModel> getCredits(int movie_id) {
             return Service.getMovieApi().getCredits(
                     movie_id,
-                    Constants.API_KEY
+                    Constants.API_KEY,
+                    Constants.DEFAULT_SYSTEM_LANGUAGE
             );
 
         }
