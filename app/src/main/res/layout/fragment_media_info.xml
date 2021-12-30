@@ -72,18 +72,19 @@
                 android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:spanCount="2"
+                tools:itemCount="4"
                 tools:listitem="@layout/list_item_crew" />
 
             <TextView
                 android:id="@+id/textTitleInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="16dp"
                 android:text="Info"
                 android:textColor="@color/alabaster"
                 android:textSize="18sp"
                 android:textStyle="bold" />
-
+<!--
             <TextView
                 android:id="@+id/textReleaseInformationTitle"
                 android:layout_width="match_parent"
@@ -100,7 +101,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />-->
 
 
             <include
