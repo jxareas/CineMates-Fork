@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
-<data>
-    <variable
-        name="credits"
-        type="com.example.cinemates.model.api.CreditsModel" />
-</data>
+
+    <data>
+
+        <variable
+            name="itemCount"
+            type="String" />
+    </data>
+
     <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -23,10 +26,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="100"
-            android:text="@{String.valueOf(credits.cast.size())}"
+            android:text="@{itemCount}"
             android:textColor="@color/geyser"
             android:textSize="14sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:text="59 people" />
 
         <Button
             android:layout_width="wrap_content"
@@ -36,7 +40,8 @@
             android:drawableTint="@color/vermilion_100"
             android:text="Order"
             android:textAllCaps="false"
-            android:textColor="@color/vermilion_100" />
+            android:textColor="@color/vermilion_100"
+            android:textSize="12sp" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

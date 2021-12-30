@@ -31,14 +31,16 @@ public class MediaInfoFragment extends Fragment {
 
     public MediaInfoFragment(MovieModel movieModel, List<CrewModel> crew) {
         this.mMovieModel = movieModel;
-        this.mCrewModel = new ArrayList<>(crew);
+        this.mCrewModel = crew;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mGenreAdapter = new GenreRecyclerViewAdapter();
-        mCrewAdapter = new CrewRecyclerViewAdapter();
+        mGenreAdapter = new GenreRecyclerViewAdapter(mMovieModel.getGenres());
+        mCrewAdapter = new CrewRecyclerViewAdapter(mCrewModel);
+//        mGenreAdapter.addItems(mMovieModel.getGenres());
+//        mCrewAdapter.addItems(mCrewModel);
     }
 
     @Override
@@ -48,12 +50,11 @@ public class MediaInfoFragment extends Fragment {
         mBinding = FragmentMediaInfoBinding.inflate(inflater, container, false);
         mBinding.setMovie(mMovieModel);
 
-        mGenreAdapter.addItems(mMovieModel.getGenres());
-        mCrewAdapter.addItems(mCrewModel);
+       /* mGenreAdapter.addItems(mMovieModel.getGenres());
+        mCrewAdapter.addItems(mCrewModel);*/
         //set adapter to recycler view
         mBinding.recyclerViewGenres.setAdapter(mGenreAdapter);
         mBinding.recyclerViewCrew.setAdapter(mCrewAdapter);
-
 
 
         return mBinding.getRoot();
@@ -66,7 +67,7 @@ public class MediaInfoFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 //TODO navigate to fragment for show movies in this collection
-                Toast.makeText(view.getContext(), "Collection: "+mMovieModel.getBelongs_to_collection().getName(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(view.getContext(), "Collection: " + mMovieModel.getBelongs_to_collection().getName(), Toast.LENGTH_SHORT).show();
             }
         });
     }

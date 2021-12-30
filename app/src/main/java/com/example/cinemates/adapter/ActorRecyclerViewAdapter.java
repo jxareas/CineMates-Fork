@@ -16,13 +16,20 @@ import java.util.List;
  * Created 15/12/2021 at 16:36
  */
 public class ActorRecyclerViewAdapter extends EmptyRecyclerView.Adapter<ActorRecyclerViewAdapter.ActorViewHolder> {
-    private final List<CastModel> dataList = new ArrayList<>();
+    private List<CastModel> dataList;
+    private LayoutInflater mLayoutInflater;
+
+    public ActorRecyclerViewAdapter(List<CastModel> dataList) {
+        this.dataList = dataList;
+    }
 
     @NonNull
     @Override
     public ActorViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        ListItemPersonInformationBinding mediaBinding = ListItemPersonInformationBinding.inflate(layoutInflater, parent, false);
+        if (mLayoutInflater == null) {
+            mLayoutInflater = LayoutInflater.from(parent.getContext());
+        }
+        ListItemPersonInformationBinding mediaBinding = ListItemPersonInformationBinding.inflate(mLayoutInflater, parent, false);
         return new ActorViewHolder(mediaBinding);
     }
 

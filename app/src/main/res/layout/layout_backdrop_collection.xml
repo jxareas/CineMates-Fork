@@ -9,6 +9,8 @@
             name="collection"
             type="com.example.cinemates.model.api.CollectionModel" />
 
+        <import type="android.view.View" />
+
     </data>
 
     <androidx.cardview.widget.CardView
@@ -16,9 +18,9 @@
         android:layout_width="match_parent"
         android:layout_height="199dp"
         android:layout_marginEnd="20dp"
+        android:visibility="@{collection == null ? View.GONE : View.VISIBLE, default=visible}"
         app:cardBackgroundColor="@color/lynch_100"
         app:cardCornerRadius="10dp"
-        app:visible="@{collection}"
         tools:showIn="@layout/fragment_media_info">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -49,20 +51,29 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Collection name" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/appCompatButton"
+            <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/textPartCollection"
-                android:layout_alignParentBottom="true"
-                android:backgroundTint="@color/lynch_20"
-                android:text="Guarda la raccolta"
-                android:textAllCaps="false"
-                android:textColor="@color/alabaster"
-                android:textStyle="bold"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@color/lynch_20"
+                app:cardCornerRadius="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent">
+
+                <TextView
+                    android:id="@+id/appCompatButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textPartCollection"
+                    android:layout_alignParentBottom="true"
+                    android:padding="10dp"
+                    android:background="@color/lynch_20"
+                    android:text="Guarda la raccolta"
+                    android:textAllCaps="false"
+                    android:textColor="@color/alabaster"
+                    android:textStyle="bold" />
+            </androidx.cardview.widget.CardView>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>

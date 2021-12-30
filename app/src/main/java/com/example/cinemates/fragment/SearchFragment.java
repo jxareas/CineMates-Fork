@@ -20,18 +20,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cinemates.R;
-import com.example.cinemates.adapter.ViewPager2Adapter;
+import com.example.cinemates.adapter.ViewPagerAdapter;
 import com.example.cinemates.databinding.FragmentSearchBinding;
-import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 
 public class SearchFragment extends Fragment {
 
     private FragmentSearchBinding mBinding;
-    private ViewPager2Adapter mAdapter;
+    private ViewPagerAdapter mAdapter;
     private LinearLayoutManager mLinearLayoutManager;
     private GridLayoutManager mGridLayoutManager;
     private boolean layoutGrid = false;
@@ -61,8 +60,8 @@ public class SearchFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         setupAppBar(view);
-        setupViewPager2();
-        setupTabLayout();
+        setupViewPager();
+//        setupTabLayout();
 
         // Listen menu item click and change layout into recyclerview
         // owned by SearchActor & SearchMovie fragment
@@ -123,7 +122,7 @@ public class SearchFragment extends Fragment {
     }
 
 
-    private void setupTabLayout() {
+   /* private void setupTabLayout() {
         final TabLayout tabLayout = mBinding.tabLayout;
         final ArrayList<String> titles = new ArrayList<>();
         titles.add("Movie");
@@ -134,7 +133,7 @@ public class SearchFragment extends Fragment {
                 tab.setText(titles.get(position));
             }
         }).attach();
-    }
+    }*/
 
     private void setupAppBar(@NonNull View view) {
         NavController navController = Navigation.findNavController(view);
@@ -144,12 +143,11 @@ public class SearchFragment extends Fragment {
 
         NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration);
     }
-    private void setupViewPager2() {
-        mAdapter = new ViewPager2Adapter(getActivity());
+    private void setupViewPager() {
         ArrayList<Fragment> fragments = new ArrayList<>();//creates an ArrayList of Fragments
         fragments.add(new SearchMovieFragment());
         fragments.add(new SearchActorFragment());
-        mAdapter.setData(fragments);// sets the data for the adapter
+        mAdapter = new ViewPagerAdapter(getParentFragmentManager(), fragments, Arrays.asList("Actor", "Movies"));
         mBinding.viewPager.setAdapter(mAdapter);
     }
 

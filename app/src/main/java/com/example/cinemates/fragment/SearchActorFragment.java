@@ -22,7 +22,7 @@ public class SearchActorFragment extends Fragment implements ChangeRvLayout {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mRecyclerViewAdapter = new ActorRecyclerViewAdapter();
+//        mRecyclerViewAdapter = new ActorRecyclerViewAdapter();
 
     }
 

@@ -17,17 +17,15 @@
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="wrap_content"
-            android:fitsSystemWindows="true"
-            android:layout_height="256dp">
+            android:layout_height="wrap_content">
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:id="@+id/collapse_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="260dp"
-                android:fitsSystemWindows="true"
+                app:contentScrim="@color/lynch_100"
                 app:expandedTitleMarginEnd="64dp"
                 app:expandedTitleMarginStart="48dp"
-                app:contentScrim="@color/lynch_100"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
 
@@ -36,8 +34,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-                    app:loadImage="@{movie.backdrop_path}"
                     app:layout_collapseMode="parallax"
+                    app:loadImage="@{movie.backdrop_path}"
                     tools:src="@tools:sample/backgrounds/scenic" />
 
 
@@ -58,13 +56,15 @@
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
 
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/view_pager"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/mirage_100"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
         </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/mirage_100"
+            android:layout_marginBottom="?attr/actionBarSize"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 
         <com.google.android.material.bottomappbar.BottomAppBar
@@ -80,6 +80,7 @@
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/vermilion_100"

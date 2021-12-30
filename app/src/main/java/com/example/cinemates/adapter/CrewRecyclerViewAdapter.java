@@ -19,13 +19,21 @@ import java.util.List;
  * Created 15/12/2021 at 16:36
  */
 public class CrewRecyclerViewAdapter extends RecyclerView.Adapter<CrewRecyclerViewAdapter.CrewViewHolder> {
-    private final List<CrewModel> dataList = new ArrayList<>();
+    private  List<CrewModel> dataList ;
+    private LayoutInflater mLayoutInflater;
+    private static final int ITEMS_LIMIT  = 4;
+
+    public CrewRecyclerViewAdapter(List<CrewModel> dataList) {
+        this.dataList = dataList;
+    }
 
     @NonNull
     @Override
     public CrewViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        ListItemCrewBinding listItemCrewBinding = ListItemCrewBinding.inflate(layoutInflater, parent, false);
+        if (mLayoutInflater == null){
+            mLayoutInflater = LayoutInflater.from(parent.getContext());
+        }
+        ListItemCrewBinding listItemCrewBinding = ListItemCrewBinding.inflate(mLayoutInflater, parent, false);
         return new CrewViewHolder(listItemCrewBinding);
     }
 
@@ -47,13 +55,14 @@ public class CrewRecyclerViewAdapter extends RecyclerView.Adapter<CrewRecyclerVi
 
     @Override
     public int getItemCount() {
-        return dataList.size();
+        //Return number of items into the limit
+        return Math.min(dataList.size(), ITEMS_LIMIT);
     }
 
-    public void addItems(List<CrewModel> dataList) {
+   /* public void addItems(List<CrewModel> dataList) {
         this.dataList.addAll(dataList);
         notifyDataSetChanged();
-    }
+    }*/
 
     static class CrewViewHolder extends RecyclerView.ViewHolder {
         ListItemCrewBinding mBinding;

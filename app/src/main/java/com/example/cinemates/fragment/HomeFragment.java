@@ -121,8 +121,6 @@ public class HomeFragment extends Fragment {
         mSectionList.add(new Section(sectionThreeName, sectionThreeItems));
 
         observePopularMovies(sectionOneItems);
-        //Add section list into recycler view
-//        mSectionRecyclerViewAdapter.addItems(mSectionList);
 
 
     }

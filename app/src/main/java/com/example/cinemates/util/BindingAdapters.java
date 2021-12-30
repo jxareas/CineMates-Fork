@@ -61,8 +61,5 @@ public class BindingAdapters {
         textView.setText(value);
     }
 
-    @BindingAdapter("visible")
-    public static void setVisibility(View view, CollectionModel collectionModel) {
-        view.setVisibility(collectionModel == null ? View.GONE: View.VISIBLE);
-    }
+
 }

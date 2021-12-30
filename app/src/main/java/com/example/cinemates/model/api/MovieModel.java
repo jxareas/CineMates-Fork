@@ -86,7 +86,8 @@ public class MovieModel implements Parcelable {
         production_countries = new ArrayList<>();
         production_companies = new ArrayList<>();
         revenue = in.readInt();
-        belongs_to_collection = in.readParcelable(CollectionModel.class.getClassLoader());
+            belongs_to_collection = in.readParcelable(CollectionModel.class.getClassLoader());
+
     }
 
     public static final Creator<MovieModel> CREATOR = new Creator<MovieModel>() {

@@ -19,13 +19,20 @@ import java.util.List;
  * Created 15/12/2021 at 16:36
  */
 public class GenreRecyclerViewAdapter extends RecyclerView.Adapter<GenreRecyclerViewAdapter.GenreViewHolder> {
-    private final List<GenreModel> dataList = new ArrayList<>();
+    private List<GenreModel> dataList;
+    private LayoutInflater mLayoutInflater;
+
+    public GenreRecyclerViewAdapter(List<GenreModel> dataList) {
+        this.dataList = dataList;
+    }
 
     @NonNull
     @Override
     public GenreViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        ItemChipTextBinding itemChipTextBinding = ItemChipTextBinding.inflate(layoutInflater, parent, false);
+        if (mLayoutInflater == null) {
+            mLayoutInflater = LayoutInflater.from(parent.getContext());
+        }
+        ItemChipTextBinding itemChipTextBinding = ItemChipTextBinding.inflate(mLayoutInflater, parent, false);
         return new GenreViewHolder(itemChipTextBinding);
     }
 
@@ -39,7 +46,7 @@ public class GenreRecyclerViewAdapter extends RecyclerView.Adapter<GenreRecycler
             @Override
             public void onClick(View view) {
                 //TODO navigate to a fragment of genre
-                Toast.makeText(view.getContext(), "Clicked genre: "+genre.getName(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(view.getContext(), "Clicked genre: " + genre.getName(), Toast.LENGTH_SHORT).show();
             }
         });
 

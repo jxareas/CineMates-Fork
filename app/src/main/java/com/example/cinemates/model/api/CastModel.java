@@ -117,13 +117,6 @@ public class CastModel implements Parcelable {
         parcel.writeString(name);
     }
 
-   /* @BindingAdapter("loadImage")
-    public static void loadImage(ImageView imageView, String posterPath) {
-        Glide.with(imageView)
-                .load(Constants.POSTER_URL + posterPath)
-                .placeholder(R.drawable.ic_baseline_image_not_supported_24)
-                .into(imageView);
-    }*/
 
     @Override
     public String toString() {
