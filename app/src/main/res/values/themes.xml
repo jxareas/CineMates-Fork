@@ -84,4 +84,13 @@
         <item name="android:textColor">@color/vermilion_100</item>
         <item name="android:textAllCaps">false</item>
     </style>
+
+    <style name="Theme.CineMates.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.CineMates.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.CineMates.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

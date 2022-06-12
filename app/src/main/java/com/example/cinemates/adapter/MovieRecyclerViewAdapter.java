@@ -59,7 +59,8 @@ public class MovieRecyclerViewAdapter extends RecyclerViewEmptySupport.Adapter<M
 
     public void addItems(List<Movie> dataList) {
         this.dataList.clear();
-        this.dataList.addAll(dataList);
+        if (!dataList.isEmpty())
+            this.dataList.addAll(dataList);
         notifyDataSetChanged();
     }
 
