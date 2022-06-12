@@ -125,12 +125,12 @@ public class MovieViewModel extends ViewModel {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableObserver<ArrayList<Movie>>() {
                     @Override
-                    public void onNext(@NonNull ArrayList<Movie> movies) {
+                    public void onNext(@io.reactivex.rxjava3.annotations.NonNull ArrayList<Movie> movies) {
                         currentMoviesList.setValue(movies);
                     }
 
                     @Override
-                    public void onError(@NonNull Throwable e) {
+                    public void onError(@io.reactivex.rxjava3.annotations.NonNull Throwable e) {
 
                     }
 
@@ -264,7 +264,6 @@ public class MovieViewModel extends ViewModel {
         );
     }
 
-<<<<<<< Updated upstream
     /*public void getQueriedMovies() {
         disposables.add(repository.getMoviesBySearch()
                 .subscribeOn(Schedulers.io())
@@ -287,10 +286,6 @@ public class MovieViewModel extends ViewModel {
 
     public void getQueriedMovies() {
         disposables.add(repository.getUpcoming()
-=======
-    public void getQueriedMovies(String query) {
-        disposables.add(repository.getMoviesBySearch(query)
->>>>>>> Stashed changes
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(result -> queriesMovies.setValue(result.getResults()),

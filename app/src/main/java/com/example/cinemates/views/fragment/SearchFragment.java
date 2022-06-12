@@ -1,7 +1,6 @@
 package com.example.cinemates.views.fragment;
 
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -99,13 +98,7 @@ public class SearchFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-<<<<<<< Updated upstream
                 //TODO send this query to Search actor & Search movie fragment
-=======
-                    searchMovieFragment.bindData(newText);
-                    searchActorsFragment.bindData(newText);
-
->>>>>>> Stashed changes
                 return false;
             }
         });

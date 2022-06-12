@@ -1,6 +1,5 @@
 package com.example.cinemates.adapter;
 
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +11,6 @@ import androidx.navigation.Navigation;
 import com.example.cinemates.databinding.ListItemPersonInformationBinding;
 import com.example.cinemates.model.Cast;
 import com.example.cinemates.util.RecyclerViewEmptySupport;
-import com.example.cinemates.views.MovieDetailsActivity;
-import com.example.cinemates.views.PersonDetailsActivity;
 import com.example.cinemates.views.fragment.DetailMediaContentFragmentDirections;
 
 import java.util.ArrayList;
@@ -43,12 +40,9 @@ public class ActorRecyclerViewAdapter extends RecyclerViewEmptySupport.Adapter<A
         holder.mBinding.getRoot().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              /*  DetailMediaContentFragmentDirections.ActionDetailMediaContentFragmentToDetailActorMediaFragment action =
+                DetailMediaContentFragmentDirections.ActionDetailMediaContentFragmentToDetailActorMediaFragment action =
                         DetailMediaContentFragmentDirections.actionDetailMediaContentFragmentToDetailActorMediaFragment(personCast);
-                Navigation.findNavController(view).navigate(action);*/
-                Intent intent = new Intent(view.getContext(), PersonDetailsActivity.class);
-                intent.putExtra("person", personCast);
-                view.getContext().startActivity(intent);
+                Navigation.findNavController(view).navigate(action);
             }
         });
 
@@ -60,9 +54,7 @@ public class ActorRecyclerViewAdapter extends RecyclerViewEmptySupport.Adapter<A
     }
 
     public void addItems(List<Cast> dataList) {
-        this.dataList.clear();
-        if (!dataList.isEmpty())
-            this.dataList.addAll(dataList);
+        this.dataList.addAll(dataList);
         notifyDataSetChanged();
     }
 

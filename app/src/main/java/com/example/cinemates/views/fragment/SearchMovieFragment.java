@@ -51,16 +51,6 @@ public class SearchMovieFragment extends Fragment implements ChangeRvLayout {
     public void changeLayout(RecyclerView.LayoutManager layoutManager) {
        /* mBinding.recyclerView.setLayoutManager(layoutManager);
         mRecyclerViewAdapter.notifyItemRangeChanged(0, mRecyclerViewAdapter.getItemCount());*/
-<<<<<<< Updated upstream
         Toast.makeText(getContext(), "Changed", Toast.LENGTH_SHORT).show();
-=======
-    }
-
-    @Override
-    public void bindData(String query) {
-            mViewModel.getQueriedMovies(query);
-
-
->>>>>>> Stashed changes
     }
 }
