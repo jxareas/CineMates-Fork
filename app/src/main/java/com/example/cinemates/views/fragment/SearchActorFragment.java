@@ -25,21 +25,21 @@ import java.util.ArrayList;
 public class SearchActorFragment extends Fragment implements ChangeRvLayout, SearchData {
 
     private FragmentSearchActorBinding mBinding;
-    private PersonRecyclerViewAdapter mRecyclerViewAdapter;
+    private PersonRecyclerViewAdapter<Cast> mRecyclerViewAdapter;
     private MovieViewModel mViewModel;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mRecyclerViewAdapter = new PersonRecyclerViewAdapter();
+        mRecyclerViewAdapter = new PersonRecyclerViewAdapter<>();
         mViewModel = new ViewModelProvider(getActivity()).get(MovieViewModel.class);
 
 
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         mBinding = FragmentSearchActorBinding.inflate(inflater, container, false);
@@ -75,7 +75,9 @@ public class SearchActorFragment extends Fragment implements ChangeRvLayout, Sea
 
     @Override
     public void bindData(String query) {
-        mViewModel.getPeoplesBySearch(query);
-
+        try {
+            mViewModel.getPeoplesBySearch(query);
+        } catch (Exception ignored) {
+        }
     }
 }
