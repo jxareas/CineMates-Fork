@@ -32,23 +32,38 @@ constructor(private val apiService: MovieService) {
         sMap["page"] = "1"
     }
 
-    suspend fun getPopularMovies() = apiService.getPopular(sMap)
+    fun getPopularMovies(): Flow<List<Movie>> = flow {
+        val popularMovies = apiService.getPopular(sMap).body()?.results ?: listOf()
+        emit(popularMovies)
+    }
 
 
-    suspend fun getTopRatedMovies() = apiService.getTopRated(sMap)
+    fun getTopRatedMovies(): Flow<List<Movie>> = flow {
+        val topRatedMovies = apiService.getTopRated(sMap).body()?.results ?: listOf()
+        emit(topRatedMovies)
+    }
 
-    suspend fun getUpcomingMovies() = apiService.getUpcoming(sMap)
+    fun getUpcomingMovies(): Flow<List<Movie>> = flow {
+        val upcomingMovies = apiService.getUpcoming(sMap).body()?.results ?: listOf()
+        emit(upcomingMovies)
+    }
 
     suspend fun getCurrentlyShowingMovies() = apiService.getCurrentlyShowing(sMap)
 
     suspend fun getGenreList() = apiService.getGenreList(sMap)
 
-    suspend fun getTrendingMovies(mediaType: String, timeWindow: String) =
-        apiService.getTrendingMovies(mediaType, timeWindow, sMap)
+    fun getTrendingMovies(mediaType: String, timeWindow: String): Flow<List<Movie>> = flow {
+        val movies =
+            apiService.getTrendingMovies(mediaType, timeWindow, sMap).body()?.results ?: listOf()
+        emit(movies)
+    }
 
 
-    suspend fun getTrendingPerson(mediaType: String, timeWindow: String) =
-        apiService.getTrendingPerson(mediaType, timeWindow, sMap)
+    fun getTrendingPerson(mediaType: String, timeWindow: String): Flow<List<Person>> = flow {
+        val persons =
+            apiService.getTrendingPerson(mediaType, timeWindow, sMap).body()?.results ?: listOf()
+        emit(persons)
+    }
 
 
     fun getVideos(movieId: Int): Flow<List<Video>> = flow {
@@ -94,7 +109,14 @@ constructor(private val apiService: MovieService) {
     }
 
 
-    suspend fun getActorDetails(personId: Int) = apiService.getActorDetails(personId, sMap)
+    fun getActorDetails(personId: Int): Flow<Person> = flow {
+        val response = apiService.getActorDetails(personId, sMap)
+        if (response.isSuccessful) {
+            response.body()?.let { actor ->
+                emit(actor)
+            }
+        }
+    }
 
 
     fun getCollection(collectionId: Int): Flow<List<Movie>> = flow {
