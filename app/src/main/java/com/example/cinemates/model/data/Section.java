@@ -1,6 +1,5 @@
 package com.example.cinemates.model.data;
 
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.cinemates.util.ViewSize;
@@ -17,13 +16,13 @@ public class Section<T> extends ArrayList<T> {
     private Class<T> genericType;
     private String sectionName;
     private String sectionContentDescription;
-    private LiveData<List<T>> listLiveData;
+    private MutableLiveData<List<T>> mMutableLiveData;
     private ViewSize mViewSize;
 
 
     public Section(String sectionName, String sectionContentDescription, Class<T> c, MutableLiveData<List<T>> mutableLiveData, ViewSize viewSize) {
         this.sectionName = sectionName;
-        listLiveData = mutableLiveData;
+        mMutableLiveData = mutableLiveData;
         this.genericType = c;
         this.sectionContentDescription = sectionContentDescription;
         this.mViewSize = viewSize;
@@ -37,12 +36,12 @@ public class Section<T> extends ArrayList<T> {
         return sectionName;
     }
 
-    public LiveData<List<T>> getLiveData() {
-        return listLiveData;
+    public MutableLiveData<List<T>> getMutableLiveData() {
+        return mMutableLiveData;
     }
 
-    public void setLiveData(LiveData<List<T>> liveData) {
-        listLiveData = liveData;
+    public void setMutableLiveData(MutableLiveData<List<T>> mutableLiveData) {
+        mMutableLiveData = mutableLiveData;
     }
 
     public String getSectionContentDescription() {
@@ -72,11 +71,11 @@ public class Section<T> extends ArrayList<T> {
         if (!(o instanceof Section)) return false;
         if (!super.equals(o)) return false;
         Section<?> section = (Section<?>) o;
-        return getGenericType().equals(section.getGenericType()) && getSectionName().equals(section.getSectionName()) && Objects.equals(getSectionContentDescription(), section.getSectionContentDescription()) && Objects.equals(getLiveData(), section.getLiveData());
+        return getGenericType().equals(section.getGenericType()) && getSectionName().equals(section.getSectionName()) && Objects.equals(getSectionContentDescription(), section.getSectionContentDescription()) && Objects.equals(getMutableLiveData(), section.getMutableLiveData());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), getGenericType(), getSectionName(), getSectionContentDescription(), getLiveData());
+        return Objects.hash(super.hashCode(), getGenericType(), getSectionName(), getSectionContentDescription(), getMutableLiveData());
     }
 }

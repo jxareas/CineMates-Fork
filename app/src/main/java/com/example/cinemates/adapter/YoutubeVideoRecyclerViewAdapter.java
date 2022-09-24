@@ -15,7 +15,6 @@ import com.example.cinemates.util.Constants;
 import com.example.cinemates.util.RecyclerViewEmptySupport;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author Antonio Di Nuzzo
@@ -24,7 +23,7 @@ import java.util.List;
 public class YoutubeVideoRecyclerViewAdapter extends RecyclerViewEmptySupport.Adapter<YoutubeVideoRecyclerViewAdapter.YoutubeViewHolder> {
 
     private static final String TAG = YoutubeVideoRecyclerViewAdapter.class.getSimpleName();
-    private List<Video> dataList;
+    private ArrayList<Video> dataList;
 
     @Override
     public YoutubeViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -62,7 +61,7 @@ public class YoutubeVideoRecyclerViewAdapter extends RecyclerViewEmptySupport.Ad
         return dataList != null ? dataList.size() : 0;
     }
 
-    public void setDataList(List<Video> dataList) {
+    public void setDataList(ArrayList<Video> dataList) {
         this.dataList = dataList;
     }
 
