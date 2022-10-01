@@ -12,6 +12,9 @@
         <action
             android:id="@+id/action_homeFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_moreBottomSheetFragment"
+            app:destination="@id/moreBottomSheetFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -88,5 +91,10 @@
         tools:layout="@layout/layout_collection_dialog"
         android:name="com.example.cinemates.view.ui.details.movie.CollectionDialogFragment"
         android:label="CollectionDialogFragment" />
+    <dialog
+        android:id="@+id/moreBottomSheetFragment"
+        tools:layout="@layout/fragment_more_bottomsheet"
+        android:name="com.example.cinemates.view.ui.details.movie.MoreBottomSheetFragment"
+        android:label="MoreBottomSheetFragment" />
 
 </navigation>

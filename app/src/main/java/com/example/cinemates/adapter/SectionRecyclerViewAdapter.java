@@ -4,14 +4,15 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.cinemates.R;
 import com.example.cinemates.databinding.ListItemSectionBinding;
 import com.example.cinemates.model.data.Cast;
 import com.example.cinemates.model.data.Movie;
@@ -176,8 +177,7 @@ public class SectionRecyclerViewAdapter extends RecyclerView.Adapter<SectionRecy
                             HomeFragmentDirections.actionHomeFragmentToDetailedViewFragment();
                     action.setSection(mBinding.textSectionTitle.getText().toString());
                     Navigation.findNavController(view).navigate(action);*/
-                    Toast.makeText(view.getContext(), "Soon", Toast.LENGTH_SHORT).show();
-
+                    Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_moreBottomSheetFragment);
                 }
             });
 
