@@ -1,5 +1,7 @@
 package com.example.cinemates.adapter;
 
+import static com.example.cinemates.util.ConstantsKt.YOUTUBE_COM_WATCH_V;
+
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
@@ -8,17 +10,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cinemates.databinding.ListItemYtVideoBinding;
+<<<<<<< Updated upstream
 import com.example.cinemates.model.Video;
 import com.example.cinemates.util.Constants;
+=======
+import com.example.cinemates.model.data.Video;
+>>>>>>> Stashed changes
 import com.example.cinemates.util.RecyclerViewEmptySupport;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubeThumbnailLoader;
 import com.google.android.youtube.player.YouTubeThumbnailView;
 
+<<<<<<< Updated upstream
 import java.util.ArrayList;
+=======
+import java.util.List;
+>>>>>>> Stashed changes
 
 /**
  * @author Antonio Di Nuzzo
@@ -29,6 +40,7 @@ public class YoutubeVideoRecyclerViewAdapter extends RecyclerViewEmptySupport.Ad
     private static final String TAG = YoutubeVideoRecyclerViewAdapter.class.getSimpleName();
     private ArrayList<Video> dataList;
 
+    @NonNull
     @Override
     public YoutubeViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
@@ -47,7 +59,7 @@ public class YoutubeVideoRecyclerViewAdapter extends RecyclerViewEmptySupport.Ad
             public void onClick(View view) {
                 Intent appIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + video.getKey()));
                 Intent webIntent = new Intent(Intent.ACTION_VIEW,
-                        Uri.parse(Constants.YOUTUBE_COM_WATCH_V + video.getKey()));
+                        Uri.parse(YOUTUBE_COM_WATCH_V+video.getKey()));
                 try {
                     view.getContext().startActivity(appIntent);
                 } catch (ActivityNotFoundException ex) {

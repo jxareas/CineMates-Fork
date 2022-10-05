@@ -37,9 +37,13 @@
                 android:gravity="start"
                 android:text="@{section.sectionName}"
                 android:textColor="@color/alabaster"
+<<<<<<< Updated upstream
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:drawableEndCompat="@drawable/ic_outline_arrow_forward_24"
+=======
+                app:asHtml="@{section}"
+>>>>>>> Stashed changes
                 app:drawableTint="@color/geyser"
                 tools:text="@tools:sample/first_names" />
 
